@@ -1,11 +1,11 @@
 {% extends "customer/customer_layout.html" %}
 {% block title %}Sijaintimme{% endblock %}
 {% block head %}
+    {{ super() }}
     <link rel="stylesheet" href="/static/customer/select_location.css">
 {% endblock %}
 {% block body %}
-    <img class="background-image z-n1" src="/static/landing-page-background.webp"/>
-    <div class="darker-layer z-n1"></div>
+    {{ super() }}
     <div class="container vh-100 d-flex flex-column align-items-center justify-content-center">
         <div class="form-container d-flex flex-column align-items-center justify-content-center p-5 w-50">
             <h1 class="mb-5">Valitse toimipiste</h1>

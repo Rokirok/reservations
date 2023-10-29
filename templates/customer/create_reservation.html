@@ -1,11 +1,11 @@
 {% extends "customer/customer_layout.html" %}
 {% block title %}Luo varaus{% endblock %}
 {% block head %}
+    {{ super() }}
     <link rel="stylesheet" href="/static/customer/create_reservation.css">
 {% endblock %}
 {% block body %}
-    <img class="background-image z-n1" src="/static/landing-page-background.webp"/>
-    <div class="darker-layer z-n1"></div>
+    {{ super() }}
     <div class="container-fluid overflow-y-scroll vh-100 d-flex flex-column align-items-center">
         <div class="form-container p-5 w-50">
             <form>

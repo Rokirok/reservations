@@ -1,16 +1,15 @@
 {% extends "customer/customer_layout.html" %}
 {% block head %}
+    {{ super() }}
     <link rel="stylesheet" href="/static/customer/landing_page.css">
 {% endblock %}
 {% block title %}Tervetuloa{% endblock %}
 {% block body %}
-    <img class="background-image z-n1" src="/static/landing-page-background.webp"/>
-    <div class="darker-layer z-n1"></div>
+    {{ super() }}
     <div class="container vh-100 d-flex flex-column align-items-center justify-content-center">
         <h1 class="mb-5">Tervetuloa kampaajalle!</h1>
         <a class="btn btn-primary btn-lg" href="/reserve">Tee varaus</a>
         <a class="btn btn-secondary btn-sm mt-3" href="/locations">Sijaintimme</a>
     </div>
     <p class="employer-login m-2"><a href="/login">Henkilökunnalle</a></p>
-    <p class="photo-credits m-2">Photo by <a href="https://unsplash.com/@aessu7">Elias Kipfer</a> on <a href="https://unsplash.com">Unsplash</a></p>
 {% endblock %}
