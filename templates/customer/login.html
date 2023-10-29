@@ -1,0 +1,31 @@
+{% extends "customer/customer_layout.html" %}
+{% block title %}Kirjaudu sisään{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/customer/login.css">
+{% endblock %}
+{% block body %}
+    {{ super() }}
+    <div class="container vh-100 d-flex flex-column align-items-center justify-content-center">
+        <div class="form-container d-flex flex-column align-items-center justify-content-center p-5 w-50">
+            <h1 class="mb-5">Henkilökunnan sisäänkirjautuminen</h1>
+            <form>
+                <div class="form-group mb-3">
+                    <label for="email">Sähköposti</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                           placeholder="Sähköposti">
+                    <small id="emailHelp" class="form-text text-muted">Jos sinulla ei ole vielä henkilökunnan tiliä, <a href="/register">rekisteröidy täällä</a>.</small>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="password">Salasana</label>
+                    <input type="password" class="form-control" id="password" placeholder="Salasana">
+                </div>
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="remember_me">
+                    <label class="form-check-label" for="remember_me">Muista minut</label>
+                </div>
+                <a type="submit" class="btn btn-primary" href="/dashboard">Kirjaudu sisään</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

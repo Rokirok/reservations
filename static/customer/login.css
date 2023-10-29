@@ -1,0 +1,9 @@
+h1 {
+    color: black;
+}
+
+.form-container {
+    background: white;
+    max-width: 600px;
+    border-radius: 3px;
+}
