@@ -1,0 +1,48 @@
+{% extends "customer/customer_layout.html" %}
+{% block title %}Sijaintimme{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="/static/customer/locations.css">
+{% endblock %}
+{% block body %}
+    <img class="background-image z-n1" src="/static/landing-page-background.webp"/>
+    <div class="darker-layer z-n1"></div>
+    <div class="container vh-100 d-flex flex-column align-items-center justify-content-center">
+        <h1 class="mb-5">Sijaintimme</h1>
+        <div class="row mb-5">
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="/static/landing-page-background.webp" class="card-img-top" alt="Kuva Merihaan sijainnista">
+                    <div class="card-body">
+                        <h5 class="card-title">Merihaka</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="/static/landing-page-background.webp" class="card-img-top" alt="Kuva Merihaan sijainnista">
+                    <div class="card-body">
+                        <h5 class="card-title">Merihaka</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="/static/landing-page-background.webp" class="card-img-top" alt="Kuva Merihaan sijainnista">
+                    <div class="card-body">
+                        <h5 class="card-title">Merihaka</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="btn btn-primary btn-lg" href="/reserve">Tee varaus</a>
+    </div>
+{% endblock %}

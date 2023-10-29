@@ -1,0 +1,29 @@
+.background-image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%
+}
+
+.darker-layer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0.4;
+    background: black;
+}
+
+.form-container {
+    background: white;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    max-width: 600px;
+    border-radius: 3px;
+}

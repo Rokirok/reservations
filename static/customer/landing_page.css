@@ -1,0 +1,45 @@
+.background-image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%
+}
+
+.darker-layer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0.4;
+    background: black;
+}
+
+.photo-credits {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: rgba(255, 255, 255, 0.5);
+    opacity: .9;
+}
+
+.employer-login {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: rgba(255, 255, 255, 0.5);
+    opacity: .9;
+}
+
+p > a {
+    color: inherit;
+}
+
+h1 {
+    color: white;
+}
