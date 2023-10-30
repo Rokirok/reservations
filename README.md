@@ -16,6 +16,22 @@ Kampaamon varausjärjestelmä, jossa asiakkaat voivat varata ajan haluamaansa pa
 ## Tarkastajalle
 Sovelluksessa on jo tehtynä käyttöliittymä, mutta mitään palvelinpuolen logiikkaa ei ole olemassa. Kyseistä käyttöliittymää voi kuitenkin käyttää ja siitä saa hyvän kuvan miltä sovellus visuaalisesti tulee näyttämään sekä sen toiminnalisuuksista. Koodi löytyy kansioista `/templates` ja `/static`
 
+## Sovelluksen käynnistäminen
+1. Siirry projektin juurikansioon `reservations`
+2. Asenna tarvittavat riippuvuudet
+```shell
+pip install -r ./requirements.txt
+```
+3. Käynnistä Flask palvelin
+```shell
+python -m flask run
+```
+
+_Kohdan 3. komennon tulisi automaattisesti löytää juurihakemistossa oleva app.py ja käynnistää web-palvelin, mutta jos näin ei tapahdu käytä alla olevaa komentoa._
+```shell
+python -m flask --app app.py run
+```
+
 <a name="käyttäjäryhmät-ja-niiden-toiminnot"></a>
 ## Käyttäjäryhmät ja niiden toiminnot
 Käyttäjäryhmät ovat järjestyksessä pienemmistä oikeuksista suurimpiin oikeuksiin. Suuremman oikeuden käyttäjäryhmä saa kaikkien alempien käyttäjäryhmien oikeudet myös käyttöönsä.
