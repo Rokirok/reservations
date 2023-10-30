@@ -1,6 +1,5 @@
 # Reservations app
 
----
 ## Sisällysluettelo
 - [Sovelluksen idea](#sovelluksen-idea)
 - [Tarkastajalle](#tarkastajalle)
@@ -8,7 +7,7 @@
     * [Asiakas (kirjautumaton)](#asiakas-kirjautumaton)
     * [Työntekijä (kirjautunut)](#työntekijä-kirjautunut)
     * [Pääkäyttäjä (kirjautunut)](#pääkäyttäjä-kirjautunut)
----
+
 <a name="sovelluksen-idea"></a>
 ## Sovelluksen idea
 Kampaamon varausjärjestelmä, jossa asiakkaat voivat varata ajan haluamaansa palveluun, haluamaansa toimipisteeseen ja haluamalleen kampaajalle. Kampaamon työntekijät voivat katsella varauksia ja merkitä niitä tehdyiksi.
