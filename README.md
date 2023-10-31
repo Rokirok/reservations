@@ -20,16 +20,16 @@ Sovelluksessa on jo tehtynä käyttöliittymä, mutta mitään palvelinpuolen lo
 1. Siirry projektin juurikansioon `reservations`
 2. Asenna tarvittavat riippuvuudet
 ```shell
-pip install -r ./requirements.txt
+python3 -m pip install -r ./requirements.txt
 ```
 3. Käynnistä Flask palvelin
 ```shell
-python -m flask run
+python3 -m flask run
 ```
 
 _Kohdan 3. komennon tulisi automaattisesti löytää juurihakemistossa oleva app.py ja käynnistää web-palvelin, mutta jos näin ei tapahdu käytä alla olevaa komentoa._
 ```shell
-python -m flask --app app.py run
+python3 -m flask --app app.py run
 ```
 
 <a name="käyttäjäryhmät-ja-niiden-toiminnot"></a>

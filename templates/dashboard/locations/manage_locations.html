@@ -1,10 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "dashboard/dashboard_layout.html" %}
+{% block content %}
+    <h1 class="mb-5">Hallitse toimipisteitä</h1>
+    <div class="row mb-5">
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="/static/landing-page-background.webp" class="card-img-top"
+                     alt="Kuva Merihaan sijainnista">
+                <div class="card-body">
+                    <h5 class="card-title">Merihaka</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
+                        card's content.</p>
+                    <a href="/dashboard/locations/edit-location/" class="btn btn-primary">Muokkaa</a>
+                    <a href="#" class="btn btn-danger">Poista</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="/static/landing-page-background.webp" class="card-img-top"
+                     alt="Kuva Merihaan sijainnista">
+                <div class="card-body">
+                    <h5 class="card-title">Merihaka</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
+                        card's content.</p>
+                    <a href="/dashboard/locations/edit-location/" class="btn btn-primary">Muokkaa</a>
+                    <a href="#" class="btn btn-danger">Poista</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="/static/landing-page-background.webp" class="card-img-top"
+                     alt="Kuva Merihaan sijainnista">
+                <div class="card-body">
+                    <h5 class="card-title">Merihaka</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
+                        card's content.</p>
+                    <a href="/dashboard/locations/edit-location/" class="btn btn-primary">Muokkaa</a>
+                    <a href="#" class="btn btn-danger">Poista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h1 class="mb-3">Luo uusi toimipiste</h1>
+        <form>
+            <div class="row mb-3">
+                <div class="col-3">
+                    <input type="text" class="form-control" placeholder="Toimipisteen nimi"
+                           aria-label="Toimipisteen nimi">
+                </div>
+                <div class="col-4">
+                    <input type="text" class="form-control" placeholder="Toimipisteen osoite"
+                           aria-label="Toimipisteen osoite">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-7">
+                    <input type="text" class="form-control" placeholder="Toimipisteen kuvan URL-osoite"
+                           aria-label="Toimipisteen kuvan URL-osoite">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary">Luo toimipiste</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

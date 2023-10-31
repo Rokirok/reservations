@@ -1,10 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "dashboard/dashboard_layout.html" %}
+{% block content %}
+    <h1 class="mb-3">Hallitse varattavia aikoja</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Aika</th>
+            <th scope="col">Toimipiste</th>
+            <th scope="col">Palvelu</th>
+            <th scope="col">Työntekijä</th>
+            <th scope="col">Toiminnot</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="align-middle">
+            <td>10:00</td>
+            <td>Meilahti</td>
+            <td>Miesten hiustenleikkuu</td>
+            <td>Teemu Työmies</td>
+            <td>
+                <button class="btn btn-danger">Poista</button>
+            </td>
+        </tr>
+        <tr class="align-middle">
+            <td>10:00</td>
+            <td>Meilahti</td>
+            <td>Miesten hiustenleikkuu</td>
+            <td>Teemu Työmies</td>
+            <td>Varattu jo</td>
+        </tr>
+        </tbody>
+    </table>
+    <h1 class="mb-3">Lisää varattava aika</h1>
+    <form>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="time" class="form-label">Aika</label>
+                <input type="text" id="time" class="form-control" placeholder="Aika (datepicker tai joku)" aria-label="Aika">
+            </div>
+            <div class="col">
+                <label for="location" class="form-label">Toimipiste</label>
+                <select class="form-select" aria-label="Valitse toimipiste" id="location">
+                    <option selected>Valitse toimipiste</option>
+                    <option value="1">Merihaka</option>
+                    <option value="2">Kannelmäki</option>
+                    <option value="3">Meilahti</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="service" class="form-label">Palvelu</label>
+                <select class="form-select" aria-label="Valitse palvelu" id="service">
+                    <option selected>Valitse palvelu</option>
+                    <option value="1">Miesten hiustenleikkuu</option>
+                    <option value="2">Parranajo</option>
+                    <option value="3">Hiusten värjäys</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="employee" class="form-label">Työntekijä</label>
+                <select class="form-select" aria-label="Valitse työntekijä" id="employee">
+                    <option selected>Valitse työntekijä</option>
+                    <option value="1">Teemu Työntekijä</option>
+                    <option value="2">Kalle Kampaaja</option>
+                    <option value="3">Matti Meikäläinen</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary">Luo palvelu</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

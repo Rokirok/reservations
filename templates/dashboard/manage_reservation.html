@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "dashboard/dashboard_layout.html" %}
+{% block content %}
+    <h1>12:30 – Ti 12.8.2023</h1>
+    <div class="card">
+        <div class="card-header">
+            Miesten hiustenleikkuu (Meilahti)
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Matti meikäläinen</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">040 123 1234 | example@example.com</h6>
+            <p class="card-text">Asiakkaan mahdollinen viesti tähän</p>
+            <a href="#" class="btn btn-success">Merkitse suoritetuksi</a>
+            <a href="#" class="btn btn-danger float-end">Poista varaus</a>
+        </div>
+    </div>
+{% endblock %}

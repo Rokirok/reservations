@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "dashboard/dashboard_layout.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/dashboard/dashboard.css">
+{% endblock %}
+{% block content %}
+    <h1>Tulevat varaukset</h1>
+    <table class="table table-striped reservations-table">
+        <thead>
+        <tr>
+            <th scope="col">Aika</th>
+            <th scope="col">Palvelu</th>
+            <th scope="col">Nimi</th>
+            <th scope="col">Viesti</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row"><a href="/dashboard/reservations/reservationId" class="text-primary">10:00</a> <i class="bi bi-box-arrow-up-right"></i></th>
+            <td>Miesten hiustenleikkuu</td>
+            <td>Matti Meikäläinen</td>
+            <td>Onnistuisiko sellaine...</td>
+        </tr>
+        <tr>
+            <th scope="row"><a href="/dashboard/reservations/reservationId" class="text-primary">11:30</a> <i class="bi bi-box-arrow-up-right"></i></th>
+            <td>Parranajo</td>
+            <td>Aapo Asiakas</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th scope="row"><a href="/dashboard/reservations/reservationId" class="text-primary">12:45</a> <i class="bi bi-box-arrow-up-right"></i></th>
+            <td>Hiusten värjäys</td>
+            <td>Leena Lauttasaari</td>
+            <td>Väreinä toivoisin pun...</td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

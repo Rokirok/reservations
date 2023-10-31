@@ -13,3 +13,13 @@ p > a {
 h1 {
     color: white;
 }
+
+.search-reservation {
+    color: white;
+    text-decoration: none;
+}
+
+.search-reservation:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

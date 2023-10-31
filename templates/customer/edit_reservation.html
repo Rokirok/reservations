@@ -1,1 +1,29 @@
 {% extends "customer/customer_layout.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/customer/edit_reservation.css">
+{% endblock %}
+{% block body %}
+    {{ super() }}
+    <div class="container vh-100 d-flex flex-column align-items-center justify-content-center">
+        <div class="form-container d-flex flex-column justify-content-center p-5 w-50">
+            <h1 class="mb-3">Varauksen tiedot</h1>
+            <p><b>Aika:</b> 21.12.2023 13:00 <br> <b>Palvelu:</b> Miesten hiustenleikkuu <br> <b>Toimipiste:</b> Meilahti</p>
+            <form>
+                <div class="mb-3">
+                    <label for="client_name" class="form-label">Nimi</label>
+                    <input type="text" class="form-control" id="client_name" value="Matti Meikäläinen">
+                </div>
+                <div class="mb-3">
+                    <label for="client_number" class="form-label">Puhelinnumero</label>
+                    <input type="text" class="form-control" id="client_number" value="0401231234">
+                </div>
+                <div class="mb-3">
+                    <label for="client_email" class="form-label">Sähköposti</label>
+                    <input type="text" class="form-control" id="client_email" value="example@example.com">
+                </div>
+                <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

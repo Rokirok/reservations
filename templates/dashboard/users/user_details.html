@@ -1,0 +1,32 @@
+{% extends "dashboard/dashboard_layout.html" %}
+{% block content %}
+    <h1 class="mb-3">Päivitä tietojasi</h1>
+    <form>
+        <div class="row mb-3">
+            <div class="col-4">
+                <label for="user_name">Nimi</label>
+                <input type="text" id="user_name" class="form-control" placeholder="Nimi"
+                       aria-label="Nimi" value="Teemu Testikäyttäjä">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-4">
+                <label for="user_email">Sähköpostiosoite</label>
+                <input type="email" id="user_email" class="form-control" placeholder="Sähköpostiosoite"
+                       aria-label="Sähköpostiosoite" value="example@example.com">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-4">
+                <label for="user_role">Käyttäjärooli</label>
+                <input type="url" id="user_role" disabled class="form-control" placeholder="Käyttäjärooli"
+                       aria-label="Käyttäjärooli" value="Pääkäyttäjä">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary">Tallenna muutokset</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

@@ -1,10 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "dashboard/dashboard_layout.html" %}
+{% block content %}
+    <h1 class="mb-3">Palvelut</h1>
+    <table class="table mb-5">
+        <thead>
+        <tr>
+            <th scope="col">Nimi</th>
+            <th scope="col">Hinta</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Miesten hiustenleikkuu</td>
+            <td>15,00 €</td>
+        </tr>
+        <tr>
+            <td>Parranajo</td>
+            <td>5,00 €</td>
+        </tr>
+        <tr>
+            <td>Hiusten värjäys</td>
+            <td>20,00 €</td>
+        </tr>
+        </tbody>
+    </table>
+    <h1 class="mb-3">Lisää uusi palvelu</h1>
+    <form>
+        <div class="row mb-3">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Palvelun nimi" aria-label="Palvelun nimi">
+            </div>
+            <div class="col">
+                <input type="number" class="form-control" placeholder="Palvelun hinta" aria-label="Palvelun hinta">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary">Luo palvelu</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,6 @@
+.reservations-table tbody tr > th:first-child {
+    font-weight: inherit;
+}
+.reservations-table tr > th:first-child > a {
+    text-decoration: none;
+}
