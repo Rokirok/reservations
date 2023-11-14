@@ -5,7 +5,7 @@
 {% block body %}
     <div class="d-flex flex-row">
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary vh-100" style="width: 280px;">
-            <a href="/dashboard"
+            <a href="/dashboard/"
                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                 <svg class="bi pe-none me-2" width="40" height="32">
                     <use xlink:href="#bootstrap"></use>
@@ -15,58 +15,62 @@
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="/dashboard" class="nav-link active" aria-current="page">
+                    <a href="/dashboard/"
+                       class="nav-link {% if active_page == 'dashboard/dashboard' %}active{% else %}link-body-emphasis{% endif %}"
+                       aria-current="page">
                         <svg class="bi pe-none me-2" width="16" height="16">
                             <use xlink:href="#home"></use>
                         </svg>
                         Varaukset
                     </a>
                 </li>
-                <li>
-                    <a href="/dashboard/manage-reservable-times" class="nav-link link-body-emphasis">
-                        <svg class="bi pe-none me-2" width="16" height="16">
-                            <use xlink:href="#speedometer2"></use>
-                        </svg>
-                        Varattavat ajat
-                    </a>
-                </li>
-                <li>
-                    <a href="/dashboard/manage-services" class="nav-link link-body-emphasis">
-                        <svg class="bi pe-none me-2" width="16" height="16">
-                            <use xlink:href="#table"></use>
-                        </svg>
-                        Palvelut
-                    </a>
-                </li>
-                <li>
-                    <a href="/dashboard/locations/manage-locations" class="nav-link link-body-emphasis">
-                        <svg class="bi pe-none me-2" width="16" height="16">
-                            <use xlink:href="#table"></use>
-                        </svg>
-                        Toimipaikat
-                    </a>
-                </li>
-                <li>
-                    <a href="/dashboard/users/manage-users" class="nav-link link-body-emphasis">
-                        <svg class="bi pe-none me-2" width="16" height="16">
-                            <use xlink:href="#grid"></use>
-                        </svg>
-                        Käyttäjät
-                    </a>
-                </li>
+                {% if dashboard_context.is_admin == true %}
+                    <li>
+                        <a href="/dashboard/manage-reservable-times/" class="nav-link {% if active_page == 'dashboard/reservable-times' %}active{% else %}link-body-emphasis{% endif %}">
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#speedometer2"></use>
+                            </svg>
+                            Varattavat ajat
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/manage-services/" class="nav-link {% if active_page == 'dashboard/services' %}active{% else %}link-body-emphasis{% endif %}">
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#table"></use>
+                            </svg>
+                            Palvelut
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/locations/manage-locations/" class="nav-link {% if active_page == 'dashboard/locations' %}active{% else %}link-body-emphasis{% endif %}">
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#table"></use>
+                            </svg>
+                            Toimipaikat
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/users/manage-users/" class="nav-link {% if active_page == 'dashboard/users' %}active{% else %}link-body-emphasis{% endif %}">
+                            <svg class="bi pe-none me-2" width="16" height="16">
+                                <use xlink:href="#grid"></use>
+                            </svg>
+                            Käyttäjät
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
             <hr>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <strong>Testikäyttäjä</strong>
+                    <strong>{{ dashboard_context.user.name }}</strong>
                 </a>
                 <ul class="dropdown-menu text-small shadow">
-                    <li><a class="dropdown-item" href="/dashboard/users/user-details">Omat tiedot</a></li>
+                    <li><a class="dropdown-item" href="/dashboard/users/user-details/">Omat tiedot</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="/dashboard/logout">Kirjaudu ulos</a></li>
+                    <li><a class="dropdown-item" href="/dashboard/logout/">Kirjaudu ulos</a></li>
                 </ul>
             </div>
         </div>
