@@ -1,8 +1,10 @@
 from flask import Flask, render_template, url_for, redirect
-
+from os import getenv
 app = Flask(__name__)
+app.secret_key = getenv("SECRET_KEY")
 
-# TODO: test if a plain flask server's routes work properly, they do not work at the moment
+import src.routes.authentication
+from src.helpers.require_authorization import login_required
 
 
 @app.route('/')
@@ -18,6 +20,7 @@ def list_locations():
 @app.route('/reserve/')
 def select_location():
     return render_template('customer/select_location.html')
+
 
 @app.route('/reserve/locationId/')
 def select_employee():
@@ -39,18 +42,9 @@ def edit_reservation():
     return render_template('customer/edit_reservation.html')
 
 
-@app.route('/login/')
-def login():
-    return render_template('customer/login.html')
-
-
-@app.route('/register/')
-def register():
-    return render_template('customer/register.html')
-
-
 @app.route('/dashboard/')
-def dashboard():
+@login_required('user')
+def dashboard(user):
     return render_template('dashboard/dashboard.html')
 
 

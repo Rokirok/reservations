@@ -1,5 +1,7 @@
 # Reservations app
 
+Sovellus tulee ajaa python 3.10:llä.
+
 ## Sisällysluettelo
 - [Sovelluksen idea](#sovelluksen-idea)
 - [Tarkastajalle](#tarkastajalle)
