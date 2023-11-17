@@ -25,6 +25,7 @@ Kaikki napit ovat tällä hetkellä linkkejä ja johtavat sille sivulle, jolle p
 <br>
 Tietyt viimeistelyn kannalta kivat ominaisuudet kuten valitun kohteen korostaminen "dashboardin" sivupanelissa ei ole vielä toiminnassa.
 
+Sovelluksessa toimivia ominaisuuksia on käyttäjän rekisteröityminen ja kirjautuminen. Myös dashboard näyttää käyttäjärooliin perustuen erilaista sisältöä. Myös pääkäyttäjän tekemä käyttäjien hallinnointi on toiminnassa. Tähän hallinnointinäkymään pääsee kun kirjautuu dashboardille ja klikkaa sivupalkista "Käyttäjät". Muistettava on, että rekisteröityneet käyttäjät tulee hyväksyä pääkäyttäjän toimesta tuolta hallinnointisivulta ennen kuin tämä rekisteröitynyt käyttäjä pääsee kirjautumaan sisään.
 
 ## Sovelluksen käynnistäminen
 1. Siirry projektin juurikansioon `reservations`
