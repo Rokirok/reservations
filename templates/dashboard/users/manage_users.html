@@ -12,18 +12,41 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="align-middle">
-            <td>Matti Meikäläinen</td>
-            <td>example@example.com</td>
-            <td>Pääkäyttäjä</td>
-            <td><button class="btn btn-success">Hyväksy</button> <button class="btn btn-warning">Muuta työntekijäksi</button></td>
-        </tr>
-        <tr class="align-middle">
-            <td>Matti Meikäläinen</td>
-            <td>example@example.com</td>
-            <td>Pääkäyttäjä</td>
-            <td><button class="btn btn-danger">Poista käytöstä</button> <button class="btn btn-danger">Muuta pääkäyttäjäksi</button></td>
-        </tr>
+        {% for user in users %}
+            <tr class="align-middle">
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                {% if user.role == 'admin' %}
+                    <td>Pääkäyttäjä</td>
+                {% else %}
+                    <td>Käyttäjä</td>
+                {% endif %}
+                <td>
+                    {% if user.role == 'admin' %}
+                        <form class="d-inline-block" method="POST" action="/dashboard/users/manage-users/make_user/">
+                            <input class="d-none" value="{{ user.user_id }}" name="user_id"/>
+                            <button type="submit" class="btn btn-warning">Muuta työntekijäksi</button>
+                        </form>
+                    {% else %}
+                        <form class="d-inline-block" method="POST" action="/dashboard/users/manage-users/make_admin/">
+                            <input class="d-none" value="{{ user.user_id }}" name="user_id"/>
+                            <button type="submit" class="btn btn-danger">Muuta pääkäyttäjäksi</button>
+                        </form>
+                    {% endif %}
+                    {% if user.allow_access == true %}
+                        <form class="d-inline-block" method="POST" action="/dashboard/users/manage-users/disallow/">
+                            <input class="d-none" value="{{ user.user_id }}" name="user_id"/>
+                            <button type="submit" class="btn btn-danger">Poista käytöstä</button>
+                        </form>
+                    {% else %}
+                        <form class="d-inline-block" method="POST" action="/dashboard/users/manage-users/allow/">
+                            <input class="d-none" value="{{ user.user_id }}" name="user_id"/>
+                            <button type="submit" class="btn btn-success">Hyväksy</button>
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}

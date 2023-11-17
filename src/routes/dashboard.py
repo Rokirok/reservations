@@ -10,46 +10,16 @@ def dashboard(user):
     return render_template('dashboard/dashboard.html', dashboard_context=dashboard_context(user))
 
 
-@app.route('/dashboard/manage-services/')
-@login_required('admin')
-def manage_services(user):
-    return render_template('dashboard/manage_services.html', dashboard_context=dashboard_context(user))
-
-
 @app.route('/dashboard/reservations/reservationId')
 @login_required('user')
 def manage_reservation(user):
     return render_template('dashboard/manage_reservation.html', dashboard_context=dashboard_context(user))
 
 
-@app.route('/dashboard/manage-reservable-times/')
-@login_required('admin')
-def manage_reservable_times(user):
-    return render_template('dashboard/manage_reservable_times.html', dashboard_context=dashboard_context(user))
-
-
-@app.route('/dashboard/users/manage-users/')
-@login_required('admin')
-def manage_users(user):
-    return render_template('dashboard/users/manage_users.html', dashboard_context=dashboard_context(user))
-
-
 @app.route('/dashboard/users/user-details/')
 @login_required('user')
 def user_details(user):
     return render_template('dashboard/users/user_details.html', dashboard_context=dashboard_context(user))
-
-
-@app.route('/dashboard/locations/manage-locations/')
-@login_required('admin')
-def manage_locations(user):
-    return render_template('dashboard/locations/manage_locations.html', dashboard_context=dashboard_context(user))
-
-
-@app.route('/dashboard/locations/edit-location/')
-@login_required('admin')
-def edit_location(user):
-    return render_template('dashboard/locations/edit_location.html', dashboard_context=dashboard_context(user))
 
 
 @app.route('/dashboard/logout/')
