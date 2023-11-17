@@ -1,0 +1,2 @@
+käyttis: test_admin@example.com
+salis: adminsalasana123
