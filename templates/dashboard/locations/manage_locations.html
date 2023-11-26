@@ -3,65 +3,41 @@
 {% block content %}
     <h1 class="mb-5">Hallitse toimipisteitä</h1>
     <div class="row mb-5">
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <img src="/static/landing-page-background.webp" class="card-img-top"
-                     alt="Kuva Merihaan sijainnista">
-                <div class="card-body">
-                    <h5 class="card-title">Merihaka</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the
-                        card's content.</p>
-                    <a href="/dashboard/locations/edit-location/" class="btn btn-primary">Muokkaa</a>
-                    <a href="#" class="btn btn-danger">Poista</a>
+        {% for location in locations %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ location.cover_image }}" class="card-img-top"
+                         alt="Kuva {{ location.name }} sijainnista">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ location.name }}</h5>
+                        <p class="card-text">{{ location.address }}</p>
+                        <a href="/dashboard/locations/edit-location/{{ location.location_id }}/"
+                           class="btn btn-primary">Muokkaa</a>
+                        <form class="d-inline-block" action="/dashboard/locations/manage-locations/delete/" method="POST">
+                            <input class="d-none" value="{{ location.location_id }}" name="location_id"/>
+                            <button type="submit" class="btn btn-danger">Poista</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <img src="/static/landing-page-background.webp" class="card-img-top"
-                     alt="Kuva Merihaan sijainnista">
-                <div class="card-body">
-                    <h5 class="card-title">Merihaka</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the
-                        card's content.</p>
-                    <a href="/dashboard/locations/edit-location/" class="btn btn-primary">Muokkaa</a>
-                    <a href="#" class="btn btn-danger">Poista</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <img src="/static/landing-page-background.webp" class="card-img-top"
-                     alt="Kuva Merihaan sijainnista">
-                <div class="card-body">
-                    <h5 class="card-title">Merihaka</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the
-                        card's content.</p>
-                    <a href="/dashboard/locations/edit-location/" class="btn btn-primary">Muokkaa</a>
-                    <a href="#" class="btn btn-danger">Poista</a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
     <div>
         <h1 class="mb-3">Luo uusi toimipiste</h1>
-        <form>
+        <form action="/dashboard/locations/manage-locations/create/" method="POST">
             <div class="row mb-3">
                 <div class="col-3">
-                    <input type="text" class="form-control" placeholder="Toimipisteen nimi"
+                    <input type="text" class="form-control" placeholder="Toimipisteen nimi" name="location_name"
                            aria-label="Toimipisteen nimi">
                 </div>
                 <div class="col-4">
-                    <input type="text" class="form-control" placeholder="Toimipisteen osoite"
+                    <input type="text" class="form-control" placeholder="Toimipisteen osoite" name="location_address"
                            aria-label="Toimipisteen osoite">
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-7">
-                    <input type="text" class="form-control" placeholder="Toimipisteen kuvan URL-osoite"
+                    <input type="text" class="form-control" placeholder="Toimipisteen kuvan URL-osoite" name="location_cover_image"
                            aria-label="Toimipisteen kuvan URL-osoite">
                 </div>
             </div>

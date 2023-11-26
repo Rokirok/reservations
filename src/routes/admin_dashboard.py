@@ -4,6 +4,7 @@ from app import app
 from src.helpers.context_generator import dashboard_context
 from src.services.users import view_manage_users, set_user_role, set_admin_role, allow_user_login, disallow_user_login
 from src.services.services import show_services, add_service, remove_service
+from src.services.locations import view_manage_locations, add_location, remove_location
 
 
 @app.route('/dashboard/manage-services/')
@@ -69,4 +70,16 @@ def edit_location(user):
 @app.route('/dashboard/locations/manage-locations/')
 @login_required('admin')
 def manage_locations(user):
-    return render_template('dashboard/locations/manage_locations.html', dashboard_context=dashboard_context(user))
+    return view_manage_locations(user)
+
+
+@app.route('/dashboard/locations/manage-locations/create/', methods=['POST'])
+@login_required('admin')
+def route_create_location(user):
+    return add_location(user, request)
+
+
+@app.route('/dashboard/locations/manage-locations/delete/', methods=['POST'])
+@login_required('admin')
+def route_delete_location(user):
+    return remove_location(user, request)

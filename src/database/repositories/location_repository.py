@@ -5,7 +5,7 @@ from sqlalchemy.sql import text
 
 def create_location(name: str, address: str, cover_image: str or None) -> Location:
     location = Location.new_location(name, address, cover_image)
-    insert_query = "INSERT INTO locations (id, name, address, cover_image) VALUES (:id, :name, :adress, :cover_image)"
+    insert_query = "INSERT INTO locations (id, name, address, cover_image) VALUES (:id, :name, :address, :cover_image)"
     db.session.execute(text(insert_query), {
         "id": location.location_id,
         "name": location.name,
