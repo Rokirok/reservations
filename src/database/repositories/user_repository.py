@@ -105,3 +105,13 @@ def set_user_role(user: User, role: str):
         "role": role
     })
     db.session.commit()
+
+
+def update_details(user: User, user_name: str, user_email: str):
+    insert_query = 'UPDATE users SET name = :name, email = :email WHERE id = :id'
+    db.session.execute(text(insert_query), {
+        "id": user.user_id,
+        "name": user_name,
+        "email": user_email
+    })
+    db.session.commit()
