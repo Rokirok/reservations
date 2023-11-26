@@ -11,31 +11,26 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="align-middle">
-            <td>Miesten hiustenleikkuu</td>
-            <td>15,00 €</td>
-            <td><button class="btn btn-danger">Poista</button></td>
+        {% for service in services %}
+            <tr class="align-middle">
+            <td>{{ service.name }}</td>
+            <td>{{ service.price }} snt</td>
+            <td><form method="POST" action="/dashboard/manage-services/delete/">
+                <input class="d-none" value="{{ service.service_id }}" name="service_id"/>
+                <button class="btn btn-danger" type="submit">Poista</button>
+            </form></td>
         </tr>
-        <tr class="align-middle">
-            <td>Parranajo</td>
-            <td>5,00 €</td>
-            <td><button class="btn btn-danger">Poista</button></td>
-        </tr>
-        <tr class="align-middle">
-            <td>Hiusten värjäys</td>
-            <td>20,00 €</td>
-            <td><button class="btn btn-danger">Poista</button></td>
-        </tr>
+        {% endfor %}
         </tbody>
     </table>
     <h1 class="mb-3">Lisää uusi palvelu</h1>
-    <form>
+    <form method="POST" action="/dashboard/manage-services/create/">
         <div class="row mb-3">
             <div class="col">
-                <input type="text" class="form-control" placeholder="Palvelun nimi" aria-label="Palvelun nimi">
+                <input type="text" class="form-control" placeholder="Palvelun nimi" aria-label="Palvelun nimi" name="service_name">
             </div>
             <div class="col">
-                <input type="number" class="form-control" placeholder="Palvelun hinta" aria-label="Palvelun hinta">
+                <input type="number" class="form-control" placeholder="Palvelun hinta" aria-label="Palvelun hinta" name="service_price">
             </div>
         </div>
         <div class="row">

@@ -3,12 +3,25 @@ from src.decorators.require_authorization import login_required
 from app import app
 from src.helpers.context_generator import dashboard_context
 from src.services.users import view_manage_users, set_user_role, set_admin_role, allow_user_login, disallow_user_login
+from src.services.services import show_services, add_service, remove_service
 
 
 @app.route('/dashboard/manage-services/')
 @login_required('admin')
 def manage_services(user):
-    return render_template('dashboard/manage_services.html', dashboard_context=dashboard_context(user))
+    return show_services(user)
+
+
+@app.route('/dashboard/manage-services/create/', methods=['POST'])
+@login_required('admin')
+def create_service(user):
+    return add_service(user, request)
+
+
+@app.route('/dashboard/manage-services/delete/', methods=['POST'])
+@login_required('admin')
+def delete_service(user):
+    return remove_service(user, request)
 
 
 @app.route('/dashboard/manage-reservable-times/')
