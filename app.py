@@ -6,16 +6,12 @@ app.secret_key = getenv("SECRET_KEY")
 import src.routes.authentication
 import src.routes.dashboard
 import src.routes.admin_dashboard
+import src.routes.customer
 
 
 @app.route('/')
 def index():
     return render_template('customer/landing_page.html')
-
-
-@app.route('/locations/')
-def list_locations():
-    return render_template('customer/locations.html')
 
 
 @app.route('/reserve/')

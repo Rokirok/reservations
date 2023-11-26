@@ -13,6 +13,11 @@ def view_manage_locations(user: User):
                            locations=locations)
 
 
+def view_customer_locations():
+    locations = list_locations()
+    return render_template('customer/locations.html', locations=locations)
+
+
 def _validate_create_location(request: Request) -> None:
     if not request.form['location_name']:
         raise ValidationException('Pyynnöstä puuttuu location_name parametri')

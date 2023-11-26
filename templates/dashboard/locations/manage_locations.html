@@ -6,14 +6,17 @@
         {% for location in locations %}
             <div class="col">
                 <div class="card" style="width: 18rem;">
-                    <img src="{{ location.cover_image }}" class="card-img-top"
-                         alt="Kuva {{ location.name }} sijainnista">
+                    {% if location.cover_image != None %}
+                        <img src="{{ location.cover_image }}" class="card-img-top"
+                             alt="Kuva {{ location.name }} sijainnista">
+                    {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ location.name }}</h5>
                         <p class="card-text">{{ location.address }}</p>
                         <a href="/dashboard/locations/edit-location/{{ location.location_id }}/"
                            class="btn btn-primary">Muokkaa</a>
-                        <form class="d-inline-block" action="/dashboard/locations/manage-locations/delete/" method="POST">
+                        <form class="d-inline-block" action="/dashboard/locations/manage-locations/delete/"
+                              method="POST">
                             <input class="d-none" value="{{ location.location_id }}" name="location_id"/>
                             <button type="submit" class="btn btn-danger">Poista</button>
                         </form>
@@ -37,7 +40,8 @@
             </div>
             <div class="row mb-3">
                 <div class="col-7">
-                    <input type="text" class="form-control" placeholder="Toimipisteen kuvan URL-osoite" name="location_cover_image"
+                    <input type="text" class="form-control" placeholder="Toimipisteen kuvan URL-osoite"
+                           name="location_cover_image"
                            aria-label="Toimipisteen kuvan URL-osoite">
                 </div>
             </div>

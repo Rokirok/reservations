@@ -4,6 +4,7 @@ from app import app
 from src.helpers.context_generator import dashboard_context
 from src.services.users import update_user_details as service_update_user_details
 
+
 @app.route('/dashboard/')
 @login_required('user')
 def dashboard(user):
