@@ -14,7 +14,7 @@
         {% for service in services %}
             <tr class="align-middle">
             <td>{{ service.name }}</td>
-            <td>{{ service.price }} snt</td>
+            <td>{{ '{:.2f}'.format(service.price / 100) }} €</td>
             <td><form method="POST" action="/dashboard/manage-services/delete/">
                 <input class="d-none" value="{{ service.service_id }}" name="service_id"/>
                 <button class="btn btn-danger" type="submit">Poista</button>
