@@ -32,45 +32,51 @@
         </tbody>
     </table>
     <h1 class="mb-3">Lisää varattava aika</h1>
-    <form>
+    <form action="/dashboard/manage-reservable-times/create/" method="POST">
         <div class="row mb-3">
             <div class="col">
+                <label for="time" class="form-label">Päivä</label>
+                <input type="text" id="date" class="form-control" placeholder="Päivä (DD.MM.YYYY)" aria-label="Päivä" name="date">
+                <small id="dateHelp" class="form-text text-muted">Päivän tulee olla muodossa DD.MM.YYYY</small>
+            </div>
+            <div class="col">
                 <label for="time" class="form-label">Aika</label>
-                <input type="text" id="time" class="form-control" placeholder="Aika (datepicker tai joku)" aria-label="Aika">
+                <input type="text" id="time" class="form-control" placeholder="Kellonaika (HH.MM)" aria-label="Aika" name="time">
+                <small id="timeHelp" class="form-text text-muted">Ajan tulee olla muodossa HH.MM</small>
             </div>
             <div class="col">
                 <label for="location" class="form-label">Toimipiste</label>
-                <select class="form-select" aria-label="Valitse toimipiste" id="location">
+                <select class="form-select" aria-label="Valitse toimipiste" id="location" name="location">
                     <option selected>Valitse toimipiste</option>
-                    <option value="1">Merihaka</option>
-                    <option value="2">Kannelmäki</option>
-                    <option value="3">Meilahti</option>
+                    {% for location in locations %}
+                        <option value="{{ location.location_id }}">{{ location.name }} - {{ location.address }}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
                 <label for="service" class="form-label">Palvelu</label>
-                <select class="form-select" aria-label="Valitse palvelu" id="service">
+                <select class="form-select" aria-label="Valitse palvelu" id="service" name="service">
                     <option selected>Valitse palvelu</option>
-                    <option value="1">Miesten hiustenleikkuu</option>
-                    <option value="2">Parranajo</option>
-                    <option value="3">Hiusten värjäys</option>
+                    {% for service in services %}
+                        <option value="{{ service.service_id }}">{{ service.name }} ({{ '{:.2f}'.format(service.price / 100) }} €)</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="col">
                 <label for="employee" class="form-label">Työntekijä</label>
-                <select class="form-select" aria-label="Valitse työntekijä" id="employee">
+                <select class="form-select" aria-label="Valitse työntekijä" id="employee" name="employee">
                     <option selected>Valitse työntekijä</option>
-                    <option value="1">Teemu Työntekijä</option>
-                    <option value="2">Kalle Kampaaja</option>
-                    <option value="3">Matti Meikäläinen</option>
+                    {% for employee in employees %}
+                        <option value="{{ employee.user_id }}">{{ employee.name }}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <button class="btn btn-primary">Luo palvelu</button>
+                <button type="submit" class="btn btn-primary">Luo varattava aika</button>
             </div>
         </div>
     </form>

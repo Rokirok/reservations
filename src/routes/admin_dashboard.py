@@ -5,6 +5,7 @@ from src.helpers.context_generator import dashboard_context
 from src.services.users import view_manage_users, set_user_role, set_admin_role, allow_user_login, disallow_user_login
 from src.services.services import show_services, add_service, remove_service
 from src.services.locations import view_manage_locations, add_location, remove_location
+from src.services.reservable_times import view_reservable_times, create_reservable_time, delete_reservable_time
 
 
 @app.route('/dashboard/manage-services/')
@@ -28,7 +29,19 @@ def delete_service(user):
 @app.route('/dashboard/manage-reservable-times/')
 @login_required('admin')
 def manage_reservable_times(user):
-    return render_template('dashboard/manage_reservable_times.html', dashboard_context=dashboard_context(user))
+    return view_reservable_times(user)
+
+
+@app.route('/dashboard/manage-reservable-times/create/', methods=['POST'])
+@login_required('admin')
+def route_create_reservable_times(user):
+    return create_reservable_time(user, request)
+
+
+@app.route('/dashboard/manage-reservable-times/delete/', methods=['POST'])
+@login_required('admin')
+def route_delete_reservable_times(user):
+    return delete_reservable_time(user, request)
 
 
 @app.route('/dashboard/users/manage-users/')

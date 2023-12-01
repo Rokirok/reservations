@@ -1,6 +1,6 @@
 from __future__ import annotations
 from uuid import uuid4
-from timeslot import Timeslot
+from src.database.entities.timeslot import Timeslot
 
 
 class Reservation:

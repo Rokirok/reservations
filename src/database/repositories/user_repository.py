@@ -115,3 +115,19 @@ def update_details(user: User, user_name: str, user_email: str):
         "email": user_email
     })
     db.session.commit()
+
+
+def list_employees():
+    result = db.session.execute(text("SELECT id, email, name, allowed_access, role FROM users WHERE allowed_access = TRUE"))
+    raw_users_array = result.fetchall()
+    users_array = []
+    for user_data in raw_users_array:
+        user_id = user_data[0]
+        user_email = user_data[1]
+        user_name = user_data[2]
+        user_allowed_access = user_data[3]
+        user_role = user_data[4]
+        user = User(user_id=user_id, name=user_name, email=user_email, role=user_role,
+                    allowed_access=user_allowed_access)
+        users_array.append(user)
+    return users_array
