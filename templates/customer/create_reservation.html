@@ -9,7 +9,15 @@
     <div class="container-fluid overflow-y-scroll vh-100 d-flex flex-column align-items-center">
         <div class="form-container p-5 w-50">
             <form>
-                <div class="mb-3" style="height: 300px;"><p>Tähän ajat, joista valita</p></div>
+                <div class="mb-3">
+                    <label for="time" class="form-label">Aika ja palvelu</label>
+                    <select class="form-select" aria-label="Valitse kellonaika" id="time">
+                        <option selected>Valitse kellonaika ja palvelu</option>
+                        <option value="1">10:00 - Hiustenleikkuu (10,00 €)</option>
+                        <option value="2">11:00 - Hiustenleikkuu (10,00 €)</option>
+                        <option value="3">12:00 - Hiustenleikkuu (10,00 €)</option>
+                    </select>
+                </div>
                 <div class="mb-3">
                     <label for="customer_name" class="form-label">Varaajan nimi</label>
                     <input type="text" class="form-control" id="customer_name">
