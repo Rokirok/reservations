@@ -50,3 +50,19 @@ def delete_location(id: str):
     delete_query = "DELETE FROM locations WHERE id = :id"
     db.session.execute(text(delete_query), {"id": id})
     db.session.commit()
+
+
+def get_reservable_locations() -> list[Location]:
+    select_query = 'SELECT l.id, l.name, l.address, l.cover_image FROM reservable_timeslots JOIN locations l ON location = l.id WHERE NOT EXISTS (SELECT FROM reservations WHERE timeslot = reservable_timeslots.id) GROUP BY l.id'
+    result = db.session.execute(text(select_query))
+    raw_locations_array = result.fetchall()
+    locations_array = []
+    for location_data in raw_locations_array:
+        location_id = location_data[0]
+        location_name = location_data[1]
+        location_address = location_data[2]
+        location_cover_image = location_data[3]
+        location = Location(location_id=location_id, name=location_name, address=location_address,
+                            cover_image=location_cover_image)
+        locations_array.append(location)
+    return locations_array

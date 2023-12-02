@@ -11,15 +11,11 @@
             <a href="/reserve/" class="go-back text-primary position-absolute m-4">&#8592; Takaisin</a>
             <h1 class="mb-5">Valitse kampaaja</h1>
             <div class="row">
-                <div class="col">
-                    <a type="button" class="btn btn-outline-primary" href="/reserve/locationId/employeeId">Aada</a>
-                </div>
-                <div class="col">
-                    <a type="button" class="btn btn-outline-primary" href="/reserve/locationId/employeeId">Daniel</a>
-                </div>
-                <div class="col">
-                    <a type="button" class="btn btn-outline-primary" href="/reserve/locationId/employeeId">Sirpa</a>
-                </div>
+                {% for employee in employees %}
+                    <div class="col">
+                        <a type="button" class="btn btn-outline-primary" href="/reserve/{{ location_id }}/{{ employee.user_id }}">{{ employee.name }}</a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

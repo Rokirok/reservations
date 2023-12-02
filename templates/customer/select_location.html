@@ -11,15 +11,11 @@
             <a href="/" class="go-back text-primary position-absolute m-4">&#8592; Takaisin</a>
             <h1 class="mb-5">Valitse toimipiste</h1>
             <div class="row">
-                <div class="col">
-                    <a type="button" class="btn btn-outline-primary" href="/reserve/locationId">Merihaka</a>
+                {% for location in locations %}
+                    <div class="col">
+                    <a type="button" class="btn btn-outline-primary" href="/reserve/{{ location.location_id }}/">{{ location.name }}</a>
                 </div>
-                <div class="col">
-                    <a type="button" class="btn btn-outline-primary" href="/reserve/locationId">Kannelmäki</a>
-                </div>
-                <div class="col">
-                    <a type="button" class="btn btn-outline-primary" href="/reserve/locationId">Meilahti</a>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

@@ -131,3 +131,20 @@ def list_employees():
                     allowed_access=user_allowed_access)
         users_array.append(user)
     return users_array
+
+
+def get_reservable_employees():
+    select_query = 'SELECT u.id, u.email, u.name, u.allowed_access, u.role FROM reservable_timeslots JOIN users u ON reservable_timeslots.employee = u.id WHERE NOT EXISTS (SELECT FROM reservations WHERE timeslot = reservable_timeslots.id) GROUP BY u.id'
+    result = db.session.execute(text(select_query))
+    raw_users_array = result.fetchall()
+    users_array = []
+    for user_data in raw_users_array:
+        user_id = user_data[0]
+        user_email = user_data[1]
+        user_name = user_data[2]
+        user_allowed_access = user_data[3]
+        user_role = user_data[4]
+        user = User(user_id=user_id, name=user_name, email=user_email, role=user_role,
+                    allowed_access=user_allowed_access)
+        users_array.append(user)
+    return users_array

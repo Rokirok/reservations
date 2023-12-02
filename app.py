@@ -14,21 +14,6 @@ def index():
     return render_template('customer/landing_page.html')
 
 
-@app.route('/reserve/')
-def select_location():
-    return render_template('customer/select_location.html')
-
-
-@app.route('/reserve/locationId/')
-def select_employee():
-    return render_template('customer/select_employee.html')
-
-
-@app.route('/reserve/locationId/employeeId/')
-def finish_reservation():
-    return render_template('customer/create_reservation.html')
-
-
 @app.route('/search-reservation')
 def search_reservation():
     return render_template('customer/search_reservation.html')

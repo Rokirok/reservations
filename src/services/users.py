@@ -2,9 +2,11 @@ from flask import render_template, Request, redirect, url_for
 from src.database.entities.user import User
 from src.helpers.context_generator import dashboard_context
 from src.database.repositories.user_repository import get_all_users, get_user_by_id, set_user_role as set_role, \
-    set_allow_status, update_details
+    set_allow_status, update_details, get_reservable_employees
+from src.database.repositories.location_repository import get_location_by_id
 from src.helpers.ValidationException import ValidationException
 from src.helpers.request_validator import validate_request
+from src.helpers.generic_validators import is_uuid
 import re
 
 RFC_5322_EMAIL_REGEX = ('(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:['
@@ -20,6 +22,16 @@ def view_manage_users(user: User):
     # Decorator in the route handler handles the role checking
     users = get_all_users()
     return render_template('dashboard/users/manage_users.html', dashboard_context=dashboard_context(user), users=users)
+
+
+def view_reservable_employees(location_id: str):
+    if not is_uuid(location_id):
+        return redirect('/reserve/', code=302)
+    location = get_location_by_id(location_id)
+    if not location:
+        return redirect('/reserve/', code=302)
+    employees = get_reservable_employees()
+    return render_template('customer/select_employee.html', employees=employees, location_id=location_id)
 
 
 def _validate_user_id(request: Request) -> None:

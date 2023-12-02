@@ -1,7 +1,7 @@
 from flask import render_template, Request, redirect
 from src.helpers.context_generator import dashboard_context
 from src.database.entities.user import User
-from src.database.repositories.location_repository import list_locations, create_location, delete_location
+from src.database.repositories.location_repository import list_locations, create_location, delete_location, get_reservable_locations
 from src.helpers.ValidationException import ValidationException
 from src.helpers.request_validator import validate_request
 from urllib.parse import urlparse
@@ -16,6 +16,11 @@ def view_manage_locations(user: User):
 def view_customer_locations():
     locations = list_locations()
     return render_template('customer/locations.html', locations=locations)
+
+
+def view_reservable_locations():
+    locations = get_reservable_locations()
+    return render_template('customer/select_location.html', locations=locations)
 
 
 def _validate_create_location(request: Request) -> None:

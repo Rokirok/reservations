@@ -19,6 +19,10 @@ def view_reservable_times(user: User):
                            locations=locations, employees=employees, services=services)
 
 
+def view_customer_reservable_times(location_id: str, employee_id: str):
+    return render_template('customer/create_reservation.html')
+
+
 def _validate_create_reservable_time(req: Request):
     form_body = req.form
     required_fields = {"location", "date", "time", "employee", "service"}
