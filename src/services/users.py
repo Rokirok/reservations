@@ -31,7 +31,7 @@ def view_reservable_employees(location_id: str):
     if not location:
         return redirect('/reserve/', code=302)
     employees = get_reservable_employees()
-    return render_template('customer/select_employee.html', employees=employees, location_id=location_id)
+    return render_template('customer/select_employee.html', employees=employees, location=location)
 
 
 def _validate_user_id(request: Request) -> None:
