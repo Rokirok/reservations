@@ -5,6 +5,8 @@ from src.database.repositories.location_repository import list_locations, create
 from src.helpers.ValidationException import ValidationException
 from src.helpers.request_validator import validate_request
 from urllib.parse import urlparse
+from src.helpers.generic_validators import is_uuid
+from src.database.repositories.service_repository import get_service_by_id
 
 
 def view_manage_locations(user: User):
@@ -18,9 +20,14 @@ def view_customer_locations():
     return render_template('customer/locations.html', locations=locations)
 
 
-def view_reservable_locations():
-    locations = get_reservable_locations()
-    return render_template('customer/select_location.html', locations=locations)
+def view_reservable_locations(service_id: str):
+    if not is_uuid(service_id):
+        return redirect('/reserve/', code=302)
+    service = get_service_by_id(service_id)
+    if not service:
+        return redirect('/reserve/', code=302)
+    locations = get_reservable_locations(service)
+    return render_template('customer/select_location.html', locations=locations, service=service)
 
 
 def _validate_create_location(request: Request) -> None:

@@ -1,4 +1,5 @@
 from src.database.entities.location import Location
+from src.database.entities.service import Service
 from src.database.db_connection import db
 from sqlalchemy.sql import text
 
@@ -52,9 +53,9 @@ def delete_location(id: str):
     db.session.commit()
 
 
-def get_reservable_locations() -> list[Location]:
-    select_query = 'SELECT l.id, l.name, l.address, l.cover_image FROM reservable_timeslots JOIN locations l ON location = l.id WHERE NOT EXISTS (SELECT FROM reservations WHERE timeslot = reservable_timeslots.id) GROUP BY l.id'
-    result = db.session.execute(text(select_query))
+def get_reservable_locations(service_filter: Service) -> list[Location]:
+    select_query = 'SELECT l.id, l.name, l.address, l.cover_image FROM reservable_timeslots JOIN locations l ON location = l.id WHERE NOT EXISTS (SELECT FROM reservations WHERE timeslot = reservable_timeslots.id) AND reservable_timeslots.service = :service_filter_id GROUP BY l.id'
+    result = db.session.execute(text(select_query), {"service_filter_id": service_filter.service_id})
     raw_locations_array = result.fetchall()
     locations_array = []
     for location_data in raw_locations_array:

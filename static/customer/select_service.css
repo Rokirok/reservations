@@ -8,6 +8,10 @@ h1 {
     border-radius: 3px;
 }
 
+.form-container a.btn {
+    white-space: nowrap;
+}
+
 .form-container .go-back {
     top: 0;
     left: 0;

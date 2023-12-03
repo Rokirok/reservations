@@ -8,15 +8,15 @@
     {{ super() }}
     <div class="container-fluid overflow-y-scroll vh-100 d-flex flex-column align-items-center">
         <div class="form-container p-5 w-50">
-            <p>Valittu kampaaja Aada toimipisteellä Meilahti</p>
+            <p>Valittu palvelu hiustenleikkaus toimipisteelle Meilahti</p>
             <form>
                 <div class="mb-3">
-                    <label for="time" class="form-label">Aika ja palvelu</label>
-                    <select class="form-select" aria-label="Valitse kellonaika" id="time">
-                        <option selected>Valitse kellonaika ja palvelu</option>
-                        <option value="1">10:00 - Hiustenleikkuu (10,00 €)</option>
-                        <option value="2">11:00 - Hiustenleikkuu (10,00 €)</option>
-                        <option value="3">12:00 - Hiustenleikkuu (10,00 €)</option>
+                    <label for="employee" class="form-label">Kampaaja</label>
+                    <select class="form-select" aria-label="Valitse kampaaja" id="employee" name="employee">
+                        <option selected>Valitse kampaaja</option>
+                        <option value="1">Aada</option>
+                        <option value="2">Joni</option>
+                        <option value="3">Daniel</option>
                     </select>
                 </div>
                 <div class="mb-3">

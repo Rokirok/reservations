@@ -19,7 +19,7 @@ def view_reservable_times(user: User):
                            locations=locations, employees=employees, services=services)
 
 
-def view_customer_reservable_times(location_id: str, employee_id: str):
+def view_customer_reservable_times(service_id: str, location_id: str):
     return render_template('customer/create_reservation.html')
 
 

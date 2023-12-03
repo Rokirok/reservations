@@ -1,5 +1,5 @@
 {% extends "customer/customer_layout.html" %}
-{% block title %}Sijaintimme{% endblock %}
+{% block title %}Valitse sijainti{% endblock %}
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="/static/customer/select_location.css">
@@ -8,13 +8,14 @@
     {{ super() }}
     <div class="container vh-100 d-flex flex-column align-items-center justify-content-center">
         <div class="form-container d-flex flex-column align-items-center justify-content-center p-5 w-50 position-relative">
-            <a href="/" class="go-back text-primary position-absolute m-4">&#8592; Takaisin</a>
-            <h1 class="mb-5">Valitse toimipiste</h1>
+            <a href="/reserve/" class="go-back text-primary position-absolute m-4">&#8592; Takaisin</a>
+            <h1>Valitse toimipiste</h1>
+            <p class="mb-5 text-muted">Valittu palvelu: {{ service.name }}</p>
             <div class="row">
                 {% for location in locations %}
                     <div class="col">
-                    <a type="button" class="btn btn-outline-primary" href="/reserve/{{ location.location_id }}/">{{ location.name }}</a>
-                </div>
+                        <a type="button" class="btn btn-outline-primary" href="/reserve/{{ service.service_id }}/{{ location.location_id }}">{{ location.name }}</a>
+                    </div>
                 {% endfor %}
             </div>
         </div>

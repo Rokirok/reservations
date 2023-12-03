@@ -41,3 +41,17 @@ def delete_service(id: str):
     delete_query = "DELETE FROM services WHERE id = :id"
     db.session.execute(text(delete_query), {"id": id})
     db.session.commit()
+
+
+def get_reservable_services() -> list[Service]:
+    select_query = 'SELECT s.id, s.name, s.price_snt FROM reservable_timeslots JOIN services s ON service = s.id WHERE NOT EXISTS (SELECT FROM reservations WHERE timeslot = reservable_timeslots.id) GROUP BY s.id'
+    result = db.session.execute(text(select_query))
+    raw_services_array = result.fetchall()
+    services_array = []
+    for service_data in raw_services_array:
+        service_id = service_data[0]
+        service_name = service_data[1]
+        service_price = service_data[2]
+        service = Service(service_id=service_id, name=service_name, price=service_price)
+        services_array.append(service)
+    return services_array

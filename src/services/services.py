@@ -1,5 +1,5 @@
 from flask import render_template, Request, redirect
-from src.database.repositories.service_repository import list_services, create_service, delete_service
+from src.database.repositories.service_repository import list_services, create_service, delete_service, get_reservable_services
 from src.database.entities.user import User
 from src.helpers.context_generator import dashboard_context
 from src.helpers.ValidationException import ValidationException
@@ -10,6 +10,11 @@ def show_services(user: User):
     services = list_services()
     return render_template('dashboard/manage_services.html', dashboard_context=dashboard_context(user),
                            services=services)
+
+
+def view_reservable_services():
+    services = get_reservable_services()
+    return render_template('customer/select_service.html', services=services)
 
 
 def _validate_create_service(request: Request) -> None:
