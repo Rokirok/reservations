@@ -19,15 +19,50 @@ Kampaamon varausjärjestelmä, jossa asiakkaat voivat varata ajan haluamaansa pa
 Sovelluksen fly.io osoite: https://reservations.fly.dev/
 Sovelluksen pääkäyttäjän tunnukset löytyvät tiedostosta online.txt. Tällä hetkellä nämä vain avaavat erilaisen näkymän hallintapanelissa ja antavat mahdollisuuden muiden käyttäjien muokkaamiseen. Ethän tiputa adminkäyttäjän roolia. Tällä käyttäjällä ei pääse tuhoamaan sovelluksessa mitään vielä tässä vaiheessa, joten siksi tunnukset ovat repositoryssä. Tulevaisuudessa tilanne voi olla toinen.
 
-Sovelluksessa on jo tehtynä käyttöliittymä, mutta kaikkea palvelinpuolen logiikkaa ei ole olemassa. Kyseistä käyttöliittymää voi kuitenkin käyttää ja siitä saa hyvän kuvan miltä sovellus visuaalisesti tulee näyttämään sekä sen toiminnalisuuksista. Koodi löytyy kansioista `/templates` ja `/static`
+Osa sovelluksen palvelinpuolen logiikasta puuttuu vielä, katso alla oleva "Ominaisuudet, jotka toteuttamatta osio".
 <br>
 
-Suosittelen käymään läpi sisäänkirjautumisesta löytyvät "Tee varaus", "Etsi varaus" ja Sijaintimme kohdat. Napit toimivat tällä hetkellä linkkeinä eteenpäin ja kenttiin ei tarvitse syöttää mitään tietoa.
-Etusivun (esim. localhost:5000/) vasemmassa alakulmassa on hienovarainen linkki tekstillä "Henkilökunnalle", jonka takaata löytyy kirjautumissivu, josta pääsee suoraan painamalla kirjaudu nappia henkilökunnan työpöydälle. Täällä on loput ominaisuuksista. Suosittelen käymään nämä paikat läpi, sillä ne toimivat hyvin kuvauksena siitä, mitä sovellus tulee pitämään sisällään.
-Kaikki napit ovat tällä hetkellä linkkejä ja johtavat sille sivulle, jolle päädyttäisiin myös lopullisessa sovelluksessa onnistuneen tapahtuman johdosta. Jos jokin nappi ei johda minnekkään niin sen takaa löytyvää käyttöliittymää ei ole suunniteltu. Näitä ei kuitenkaan pitäisi olla kuin ihan muutama.
+Suosittelen käymään läpi etusivulta löytyvät "Tee varaus", "Etsi varaus" ja Sijaintimme kohdat.<br>
+Etusivun (esim. localhost:5000/) vasemmassa alakulmassa on hienovarainen linkki tekstillä "Henkilökunnalle", jonka takaata löytyy kirjautumissivu, josta pääsee suoraan henkilökunnan työpöydälle käyttämällä online.txt-tiedoston tunnuksia. Täällä on loput ominaisuuksista.
 <br>
 
-Sovelluksessa toimivia ominaisuuksia on käyttäjän rekisteröityminen ja kirjautuminen. Myös dashboard näyttää käyttäjärooliin perustuen erilaista sisältöä. Myös pääkäyttäjän tekemä käyttäjien hallinnointi on toiminnassa. Tähän hallinnointinäkymään pääsee kun kirjautuu dashboardille ja klikkaa sivupalkista "Käyttäjät". Muistettava on, että rekisteröityneet käyttäjät tulee hyväksyä pääkäyttäjän toimesta tuolta hallinnointisivulta ennen kuin tämä rekisteröitynyt käyttäjä pääsee kirjautumaan sisään.
+Sovelluksessa toimivia ominaisuuksia on:
+- Varausta asiakkaana tehdessä voi valita palvelun ja toimipaikan (viimeinen lomake ei toimi vielä)
+- Sijaintien tarkastelu
+- Käyttäjän kirjautuminen, rekisteröityminen ja uloskirjautuminen
+- Käyttäjien listaaminen
+- Käyttäjän salliminen henkilökunnan työpöydälle ja tämän oikeuden poistaminen
+- Käyttäjän roolin vaihtaminen käyttäjästä pääkäyttäjäksi ja toisin päin
+- Palveluiden ja toimipaikkojen luominen, listaaminen ja poistaminen (muokkaaminen toteuttamatta)
+- Oman käyttäjän tietojen muokkaus
+- Varattavien aikojen (näitä asiakkaat voivat varailla sitten) luominen ja listaaminen
+- Pelkästään pääkäyttäjälle tarkoitettujen osioiden piilotus työpöydältä, jos kirjaudutaan normaalina käyttäjänä.
+<br>
+
+Muistathan, että rekisteröityneet käyttäjät tulee hyväksyä pääkäyttäjän toimesta Käyttäjät välilehdeltä ennen kuin tämä rekisteröitynyt käyttäjä pääsee kirjautumaan sisään.
+
+## Ominaisuudet, jotka toteuttamatta
+#### Etusivu
+- Varauksen vieminen loppuun, palvelun ja toimipaikan valinta toimii, omien tietojen syöttölomake ei vielä.
+- Varauksen etsiminen
+- Sijaintimme sivun kortit saman kokoisiksi
+- Valitse palvelu kortin napit järkevän näköiseksi (toimi kahdella, ei näköjään kolmella)
+### Henkilökunnan työpöytä
+- Muista minut ominaisuus kirjautuessa
+##### Varaukset välilehti
+- Asiakkaiden tekemien varauksien listaaminen (pelkkä design tehtynä)
+- Asiakkaiden varauksien tarkastelynäkymä (pelkkä design tehtynä)
+- Asiakkaan varauksen asettaminen suoritetuksi tai poistaminen (pelkkä design tehtynä)
+
+##### Varattavat ajat välilehti
+- Luotujen "Varattavien aikojen" poistaminen
+- Luonnin yhteydessä tapahtuneiden virheviestien näyttäminen, erityisesti syötteen formatointivirheet
+
+##### Palvelut ja toimipaikat välilehdet
+- Estä palvelun tai toimipaikan poistaminen, jos sillä on varattavia aikoja (heittää tällä hetkellä virheen vain)
+- Toimipaikkakortit saman korkuisiksi
+- Toimipaikkojen muokkaaminen
+
 
 ## Sovelluksen käynnistäminen
 1. Siirry projektin juurikansioon `reservations`
