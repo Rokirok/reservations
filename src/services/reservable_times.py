@@ -70,7 +70,7 @@ def create_reservable_time(user: User, request: Request):
     parsed_date = datetime.strptime(str(request.form['date']), '%d.%m.%Y').date()
     parsed_datetime = datetime.combine(parsed_date, parsed_time)
 
-    db_create_reservable_time(parsed_datetime, user, service, location)
+    db_create_reservable_time(parsed_datetime, employee, service, location)
 
     return redirect('/dashboard/manage-reservable-times/', code=302)
 
