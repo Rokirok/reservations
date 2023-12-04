@@ -17,7 +17,7 @@ Kampaamon varausjärjestelmä, jossa asiakkaat voivat varata ajan haluamaansa pa
 <a name="tarkastajalle"></a>
 ## Tarkastajalle
 Sovelluksen fly.io osoite: https://reservations.fly.dev/
-Sovelluksen pääkäyttäjän tunnukset löytyvät tiedostosta online.txt. Tällä hetkellä nämä vain avaavat erilaisen näkymän hallintapanelissa ja antavat mahdollisuuden muiden käyttäjien muokkaamiseen. Ethän tiputa adminkäyttäjän roolia. Tällä käyttäjällä ei pääse tuhoamaan sovelluksessa mitään vielä tässä vaiheessa, joten siksi tunnukset ovat repositoryssä. Tulevaisuudessa tilanne voi olla toinen.
+Sovelluksen pääkäyttäjän tunnukset löytyvät tiedostosta online.txt. Tällä hetkellä nämä avaavat erilaisen näkymän hallintapanelissa ja antavat mahdollisuuden mm. muiden käyttäjien muokkaamiseen. Ethän tiputa adminkäyttäjän roolia. Tällä käyttäjällä ei pääse tuhoamaan sovelluksessa mitään suurempaa vielä tässä vaiheessa, joten siksi tunnukset ovat repositoryssä. Tulevaisuudessa tilanne voi olla toinen.
 
 Osa sovelluksen palvelinpuolen logiikasta puuttuu vielä, katso alla oleva "Ominaisuudet, jotka toteuttamatta osio".
 <br>
