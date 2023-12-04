@@ -8,15 +8,18 @@ from src.helpers.ValidationException import ValidationException
 from src.helpers.request_validator import validate_request
 from datetime import datetime
 from src.helpers.generic_validators import is_uuid
-from src.database.repositories.reservable_times_repository import create_reservable_time as db_create_reservable_time
+from src.database.repositories.reservable_times_repository import create_reservable_time as db_create_reservable_time, \
+    list_reservable_times
 
 
 def view_reservable_times(user: User):
+    reservable_times = list_reservable_times()
     locations = list_locations()
     services = list_services()
     employees = list_employees()
     return render_template('dashboard/manage_reservable_times.html', dashboard_context=dashboard_context(user),
-                           locations=locations, employees=employees, services=services)
+                           locations=locations, employees=employees, services=services,
+                           reservable_times=reservable_times[0], reserved_ids=reservable_times[1])
 
 
 def view_customer_reservable_times(service_id: str, location_id: str):

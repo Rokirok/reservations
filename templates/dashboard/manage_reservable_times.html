@@ -13,22 +13,21 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="align-middle">
-            <td>10:00</td>
-            <td>Meilahti</td>
-            <td>Miesten hiustenleikkuu</td>
-            <td>Teemu Työmies</td>
-            <td>
-                <button class="btn btn-danger">Poista</button>
-            </td>
-        </tr>
-        <tr class="align-middle">
-            <td>10:00</td>
-            <td>Meilahti</td>
-            <td>Miesten hiustenleikkuu</td>
-            <td>Teemu Työmies</td>
-            <td>Varattu jo</td>
-        </tr>
+        {% for rt in reservable_times %}
+            <tr class="align-middle">
+                <td>{{ rt.timestamp.strftime("%d.%m.%Y - %H:%M") }}</td>
+                <td>{{ rt.location.name }}</td>
+                <td>{{ rt.service.name }}</td>
+                <td>{{ rt.employee.name }}</td>
+                {% if rt.timeslot_id in reserved_ids %}
+                    <td>Varattu jo</td>
+                {% else %}
+                    <td>
+                        <button class="btn btn-danger">Poista</button>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
     <h1 class="mb-3">Lisää varattava aika</h1>
@@ -36,12 +35,14 @@
         <div class="row mb-3">
             <div class="col">
                 <label for="time" class="form-label">Päivä</label>
-                <input type="text" id="date" class="form-control" placeholder="Päivä (DD.MM.YYYY)" aria-label="Päivä" name="date">
+                <input type="text" id="date" class="form-control" placeholder="Päivä (DD.MM.YYYY)" aria-label="Päivä"
+                       name="date">
                 <small id="dateHelp" class="form-text text-muted">Päivän tulee olla muodossa DD.MM.YYYY</small>
             </div>
             <div class="col">
                 <label for="time" class="form-label">Aika</label>
-                <input type="text" id="time" class="form-control" placeholder="Kellonaika (HH.MM)" aria-label="Aika" name="time">
+                <input type="text" id="time" class="form-control" placeholder="Kellonaika (HH.MM)" aria-label="Aika"
+                       name="time">
                 <small id="timeHelp" class="form-text text-muted">Ajan tulee olla muodossa HH.MM</small>
             </div>
             <div class="col">
@@ -60,7 +61,9 @@
                 <select class="form-select" aria-label="Valitse palvelu" id="service" name="service">
                     <option selected>Valitse palvelu</option>
                     {% for service in services %}
-                        <option value="{{ service.service_id }}">{{ service.name }} ({{ '{:.2f}'.format(service.price / 100) }} €)</option>
+                        <option value="{{ service.service_id }}">{{ service.name }}
+                            ({{ '{:.2f}'.format(service.price / 100) }} €)
+                        </option>
                     {% endfor %}
                 </select>
             </div>
