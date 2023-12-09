@@ -74,12 +74,6 @@ def route_set_user_role(user):
     return set_user_role(user, request)
 
 
-@app.route('/dashboard/locations/edit-location/')
-@login_required('admin')
-def edit_location(user):
-    return render_template('dashboard/locations/edit_location.html', dashboard_context=dashboard_context(user))
-
-
 @app.route('/dashboard/locations/manage-locations/')
 @login_required('admin')
 def manage_locations(user):

@@ -13,8 +13,6 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ location.name }}</h5>
                         <p class="card-text">{{ location.address }}</p>
-                        <a href="/dashboard/locations/edit-location/{{ location.location_id }}/"
-                           class="btn btn-primary">Muokkaa</a>
                         <form class="d-inline-block" action="/dashboard/locations/manage-locations/delete/"
                               method="POST">
                             <input class="d-none" value="{{ location.location_id }}" name="location_id"/>

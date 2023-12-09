@@ -47,8 +47,6 @@ Muistathan, että rekisteröityneet käyttäjät tulee hyväksyä pääkäyttäj
 - Varauksen etsiminen
 - Sijaintimme sivun kortit saman kokoisiksi
 - Valitse palvelu kortin napit järkevän näköiseksi (toimi kahdella, ei näköjään kolmella)
-### Henkilökunnan työpöytä
-- Muista minut ominaisuus kirjautuessa
 ##### Varaukset välilehti
 - Asiakkaiden tekemien varauksien listaaminen (pelkkä design tehtynä)
 - Asiakkaiden varauksien tarkastelynäkymä (pelkkä design tehtynä)
@@ -61,7 +59,6 @@ Muistathan, että rekisteröityneet käyttäjät tulee hyväksyä pääkäyttäj
 ##### Palvelut ja toimipaikat välilehdet
 - Estä palvelun tai toimipaikan poistaminen, jos sillä on varattavia aikoja (heittää tällä hetkellä virheen vain)
 - Toimipaikkakortit saman korkuisiksi
-- Toimipaikkojen muokkaaminen
 
 
 ## Sovelluksen käynnistäminen
