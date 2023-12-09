@@ -4,6 +4,7 @@ from src.database.entities.user import User
 from src.database.repositories.location_repository import list_locations, get_location_by_id
 from src.database.repositories.service_repository import list_services, get_service_by_id
 from src.database.repositories.user_repository import list_employees, get_user_by_id
+from src.database.repositories.reservable_times_repository import get_reservable_times
 from src.helpers.ValidationException import ValidationException
 from src.helpers.request_validator import validate_request
 from datetime import datetime
@@ -23,7 +24,19 @@ def view_reservable_times(user: User):
 
 
 def view_customer_reservable_times(service_id: str, location_id: str):
-    return render_template('customer/create_reservation.html')
+    if not is_uuid(service_id):
+        return redirect('/reserve/', code=302)
+    if not is_uuid(location_id):
+        return redirect(f'/reserve/${service_id}', code=302)
+    service = get_service_by_id(service_id)
+    location = get_location_by_id(location_id)
+    if not service:
+        return redirect('/reserve/', code=302)
+    if not location:
+        return redirect(f'/reserve/${service_id}', code=302)
+    reservable_times = get_reservable_times(service, location)
+    return render_template('customer/create_reservation.html', location=location, service=service,
+                           reservable_times=reservable_times)
 
 
 def _validate_create_reservable_time(req: Request):

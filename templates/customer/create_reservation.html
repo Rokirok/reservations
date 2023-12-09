@@ -8,35 +8,35 @@
     {{ super() }}
     <div class="container-fluid overflow-y-scroll vh-100 d-flex flex-column align-items-center">
         <div class="form-container p-5 w-50">
-            <p>Valittu palvelu hiustenleikkaus toimipisteelle Meilahti</p>
-            <form>
+            <p>Valittu palvelu {{ service.name.lower() }} toimipisteelle {{ location.name }}</p>
+            <form action="/reserve/create-reservation/" method="POST">
                 <div class="mb-3">
-                    <label for="employee" class="form-label">Kampaaja</label>
-                    <select class="form-select" aria-label="Valitse kampaaja" id="employee" name="employee">
-                        <option selected>Valitse kampaaja</option>
-                        <option value="1">Aada</option>
-                        <option value="2">Joni</option>
-                        <option value="3">Daniel</option>
+                    <label for="employee" class="form-label">Aika ja kampaaja</label>
+                    <select class="form-select" aria-label="Valitse aika ja kampaaja" id="timeslot" name="timeslot">
+                        <option selected>Valitse aika ja kampaaja</option>
+                        {% for timeslot in reservable_times %}
+                            <option value="{{ timeslot.timeslot_id }}">{{ timeslot.timestamp.strftime("%d.%m.%Y - %H:%M") }} - {{ timeslot.employee.name }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="customer_name" class="form-label">Varaajan nimi</label>
-                    <input type="text" class="form-control" id="customer_name">
+                    <input type="text" class="form-control" id="customer_name" name="customer_name">
                 </div>
                 <div class="mb-3">
                     <label for="customer_number" class="form-label">Varaajan puhelinnumero</label>
-                    <input type="text" class="form-control" id="customer_number">
+                    <input type="text" class="form-control" id="customer_number" name="customer_number">
                     <div id="customer_number_help" class="form-text">Anna puhelinnumero muodossa 040 123 1234</div>
                 </div>
                 <div class="mb-3">
                     <label for="customer_email" class="form-label">Varaajan sähköpostiosoite</label>
-                    <input type="email" class="form-control" id="customer_email">
+                    <input type="email" class="form-control" id="customer_email" name="customer_email">
                     <div id="customer_email_help" class="form-text">Lähetämme sähköpostiisi vain varausvahvistuksen.
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="message" class="form-label">Viesti kampaajalle</label>
-                    <textarea class="form-control" id="message" rows="3"></textarea>
+                    <textarea class="form-control" id="message" rows="3" name="message"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Lähetä varaus</button>
             </form>
