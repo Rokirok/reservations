@@ -4,16 +4,9 @@ from src.helpers.context_generator import dashboard_context
 from src.database.repositories.user_repository import get_all_users, get_user_by_id, set_user_role as set_role, \
     set_allow_status, update_details
 from src.helpers.ValidationException import ValidationException
+from src.helpers.generic_validators import is_email
 from src.helpers.request_validator import validate_request
 import re
-
-RFC_5322_EMAIL_REGEX = ('(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:['
-                        '\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\['
-                        '\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:['
-                        'a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5['
-                        '0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:['
-                        '\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\['
-                        '\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])')
 
 
 def view_manage_users(user: User):
@@ -92,7 +85,7 @@ def _validate_user_details_update(request: Request):
     if not request.form['user_email']:
         raise ValidationException('Pyynnöstä puuttuu user_email parametri')
 
-    if not re.match(RFC_5322_EMAIL_REGEX, request.form['user_email']):
+    if not is_email(request.form['user_email']):
         raise ValidationException('Sähköposti ei ole oikeassa muodossa. Muodon tulisi olla: käyttäjä@example.com')
 
 

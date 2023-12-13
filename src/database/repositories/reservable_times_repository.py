@@ -65,3 +65,21 @@ def get_reservable_times(service_filter: Service, location_filter: Location):
         reservable_time = Timeslot(rt_id, rt_timestamp, rt_location, rt_employee, rt_service)
         reservable_times_array.append(reservable_time)
     return reservable_times_array
+
+
+def get_reservable_time_by_id(rt_id: str):
+    select_query = 'SELECT rt.id, rt.timestamp, rt.location, rt.employee, rt.service FROM reservable_timeslots rt WHERE rt.id = :id'
+    result = db.session.execute(text(select_query), {"id": rt_id})
+    raw_rt_array = result.fetchall()
+    if len(raw_rt_array) == 0:
+        return None
+    rt_data = raw_rt_array[0]
+    rt_id = rt_data[0]
+    rt_timestamp = rt_data[1]
+    rt_location_id = rt_data[2]
+    rt_employee_id = rt_data[3]
+    rt_service_id = rt_data[4]
+    rt_location = get_location_by_id(rt_location_id)
+    rt_employee = get_user_by_id(rt_employee_id)
+    rt_service = get_service_by_id(rt_service_id)
+    return Timeslot(rt_id, rt_timestamp, rt_location, rt_employee, rt_service)
