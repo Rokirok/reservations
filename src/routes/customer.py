@@ -3,7 +3,8 @@ from flask import request, render_template
 from src.services.locations import view_customer_locations, view_reservable_locations
 from src.services.services import view_reservable_services
 from src.services.reservable_times import view_customer_reservable_times
-from src.services.reservations import create_reservation, search_for_reservation
+from src.services.reservations import create_reservation, search_for_reservation, show_edit_reservation, \
+    save_edited_reservation
 
 
 @app.route('/locations/')
@@ -48,4 +49,9 @@ def search_reservation():
 
 @app.route('/edit-reservation/<reservation_id>')
 def edit_reservation(reservation_id: str):
-    return render_template('customer/edit_reservation.html')
+    return show_edit_reservation(request, reservation_id)
+
+
+@app.route('/edit-reservation/<reservation_id>', methods=['POST'])
+def save_edit_reservation(reservation_id: str):
+    return save_edited_reservation(request, reservation_id)

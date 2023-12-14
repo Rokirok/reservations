@@ -16,7 +16,8 @@ def generate_pin():
 
 
 def create_reservation(timeslot: Timeslot, customer_name: str, customer_mobile: str, customer_email: str, message: str):
-    reservation = Reservation.new_reservation(generate_pin(), timeslot, customer_name, customer_mobile, customer_email, message, False)
+    reservation = Reservation.new_reservation(generate_pin(), timeslot, customer_name, customer_mobile, customer_email,
+                                              message, False)
     insert_query = "INSERT INTO reservations (id, pin, timeslot, customer_name, customer_email, customer_mobile, message, completed) VALUES (:id, :pin, :timeslot, :customer_name, :customer_email, :customer_mobile, :message, :completed)"
     db.session.execute(text(insert_query), {
         "id": reservation.reservation_id,
@@ -66,3 +67,16 @@ def get_reservation_by_id(reservation_id: str) -> Reservation or None:
     completed = reservation_data[7]
     timeslot = get_reservable_time_by_id(timeslot_id)
     return Reservation(id, pin, timeslot, customer_name, customer_mobile, customer_email, message, completed)
+
+
+def save_updated_reservation(reservation: Reservation) -> Reservation:
+    update_query = 'UPDATE reservations SET customer_name = :customer_name, customer_email = :customer_email, customer_mobile = :customer_mobile, message = :message WHERE id = :id'
+    db.session.execute(text(update_query), {
+        "id": reservation.reservation_id,
+        "customer_name": reservation.customer_name,
+        "customer_email": reservation.customer_email,
+        "customer_mobile": reservation.customer_mobile,
+        "message": reservation.message
+    })
+    db.session.commit()
+    return reservation
