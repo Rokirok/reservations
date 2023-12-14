@@ -2,13 +2,14 @@ from flask import render_template, redirect, url_for, session, request
 from src.decorators.require_authorization import login_required
 from app import app
 from src.helpers.context_generator import dashboard_context
+from src.services.reservations import view_reservations
 from src.services.users import update_user_details as service_update_user_details
 
 
 @app.route('/dashboard/')
 @login_required('user')
 def dashboard(user):
-    return render_template('dashboard/dashboard.html', dashboard_context=dashboard_context(user))
+    return view_reservations(user, request)
 
 
 @app.route('/dashboard/reservations/reservationId')

@@ -80,3 +80,23 @@ def save_updated_reservation(reservation: Reservation) -> Reservation:
     })
     db.session.commit()
     return reservation
+
+def get_all_reservations() -> list[Reservation]:
+    select_query = 'SELECT id, pin, timeslot, customer_name, customer_email, customer_mobile, message, completed FROM reservations'
+    result = db.session.execute(text(select_query))
+    raw_reservations_array = result.fetchall()
+    reservations = []
+    for reservation_data in raw_reservations_array:
+        id = reservation_data[0]
+        pin = reservation_data[1]
+        timeslot_id = reservation_data[2]
+        customer_name = reservation_data[3]
+        customer_email = reservation_data[4]
+        customer_mobile = reservation_data[5]
+        message = reservation_data[6]
+        completed = reservation_data[7]
+        timeslot = get_reservable_time_by_id(timeslot_id)
+        reservation = Reservation(id, pin, timeslot, customer_name, customer_mobile, customer_email, message, completed)
+        reservations.append(reservation)
+    return reservations
+

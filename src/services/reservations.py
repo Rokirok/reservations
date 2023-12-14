@@ -1,11 +1,13 @@
 from flask import Request, redirect, render_template
 
+from src.database.entities.user import User
 from src.database.repositories.reservable_times_repository import get_reservable_time_by_id
 from src.helpers.ValidationException import ValidationException
+from src.helpers.context_generator import dashboard_context
 from src.helpers.generic_validators import is_uuid, is_email
 from src.helpers.request_validator import validate_request
 from src.database.repositories.reservation_repository import create_reservation as db_create_reservation, \
-    search_reservation, get_reservation_by_id, save_updated_reservation
+    search_reservation, get_reservation_by_id, save_updated_reservation, get_all_reservations
 
 
 def _validate_create_location(request: Request) -> None:
@@ -104,3 +106,9 @@ def save_edited_reservation(request: Request, reservation_id: str):
     reservation.message = request.form.get('message', None)
     save_updated_reservation(reservation)
     return redirect(f'/edit-reservation/{reservation.reservation_id}', code=302)
+
+
+def view_reservations(user: User, request: Request):
+    reservations = get_all_reservations()
+    return render_template('dashboard/dashboard.html', dashboard_context=dashboard_context(user),
+                           reservations=reservations)
