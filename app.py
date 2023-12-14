@@ -14,15 +14,5 @@ def index():
     return render_template('customer/landing_page.html')
 
 
-@app.route('/search-reservation')
-def search_reservation():
-    return render_template('customer/search_reservation.html')
-
-
-@app.route('/edit-reservation')
-def edit_reservation():
-    return render_template('customer/edit_reservation.html')
-
-
 if __name__ == '__main__':
     app.run()

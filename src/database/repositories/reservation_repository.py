@@ -5,6 +5,7 @@ from sqlalchemy import text
 from src.database.db_connection import db
 from src.database.entities.reservation import Reservation
 from src.database.entities.timeslot import Timeslot
+from src.database.repositories.reservable_times_repository import get_reservable_time_by_id
 
 
 def generate_pin():
@@ -29,3 +30,39 @@ def create_reservation(timeslot: Timeslot, customer_name: str, customer_mobile: 
     })
     db.session.commit()
     return reservation
+
+
+def search_reservation(email: str, pin: str) -> Reservation or None:
+    select_query = 'SELECT id, pin, timeslot, customer_name, customer_email, customer_mobile, message, completed FROM reservations WHERE customer_email = :email AND pin = :pin'
+    result = db.session.execute(text(select_query), {"email": email, "pin": pin})
+    reservation_data = result.fetchone()
+    if reservation_data is None:
+        return None
+    id = reservation_data[0]
+    pin = reservation_data[1]
+    timeslot_id = reservation_data[2]
+    customer_name = reservation_data[3]
+    customer_email = reservation_data[4]
+    customer_mobile = reservation_data[5]
+    message = reservation_data[6]
+    completed = reservation_data[7]
+    timeslot = get_reservable_time_by_id(timeslot_id)
+    return Reservation(id, pin, timeslot, customer_name, customer_mobile, customer_email, message, completed)
+
+
+def get_reservation_by_id(reservation_id: str) -> Reservation or None:
+    select_query = 'SELECT id, pin, timeslot, customer_name, customer_email, customer_mobile, message, completed FROM reservations WHERE :id = id'
+    result = db.session.execute(text(select_query), {"id": reservation_id})
+    reservation_data = result.fetchone()
+    if reservation_data is None:
+        return None
+    id = reservation_data[0]
+    pin = reservation_data[1]
+    timeslot_id = reservation_data[2]
+    customer_name = reservation_data[3]
+    customer_email = reservation_data[4]
+    customer_mobile = reservation_data[5]
+    message = reservation_data[6]
+    completed = reservation_data[7]
+    timeslot = get_reservable_time_by_id(timeslot_id)
+    return Reservation(id, pin, timeslot, customer_name, customer_mobile, customer_email, message, completed)

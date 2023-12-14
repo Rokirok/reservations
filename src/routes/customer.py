@@ -3,7 +3,7 @@ from flask import request, render_template
 from src.services.locations import view_customer_locations, view_reservable_locations
 from src.services.services import view_reservable_services
 from src.services.reservable_times import view_customer_reservable_times
-from src.services.reservations import create_reservation
+from src.services.reservations import create_reservation, search_for_reservation
 
 
 @app.route('/locations/')
@@ -31,6 +31,21 @@ def post_create_reservation():
     return create_reservation(request)
 
 
-@app.route('/successful-reservation')
+@app.route('/successful-reservation/')
 def successful_reservation():
     return render_template('customer/successful_reservation.html', pin=request.args.get('pin', 'N/A'))
+
+
+@app.route('/search-reservation/')
+def view_search_reservation():
+    return render_template('customer/search_reservation.html')
+
+
+@app.route('/search-reservation/', methods=['POST'])
+def search_reservation():
+    return search_for_reservation(request)
+
+
+@app.route('/edit-reservation/<reservation_id>')
+def edit_reservation(reservation_id: str):
+    return render_template('customer/edit_reservation.html')

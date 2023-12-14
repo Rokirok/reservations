@@ -8,16 +8,19 @@
     <div class="container vh-100 d-flex flex-column align-items-center justify-content-center">
         <div class="form-container d-flex flex-column align-items-center justify-content-center p-5 w-50">
             <h1 class="mb-5">Etsi varaus</h1>
-            <form>
+            {% if error is defined %}
+                <p class="text-danger">{{ error }}</p>
+            {% endif %}
+            <form action="/search-reservation/" method="POST">
                 <div class="mb-3">
-                    <label for="reservation_id" class="form-label">Varauksen tunnus</label>
-                    <input type="text" class="form-control" id="reservation_id">
+                    <label for="reservation_id" class="form-label">Varaajan sähköpostiosoite</label>
+                    <input type="email" class="form-control" id="customer_email" name="customer_email">
                 </div>
                 <div class="mb-3">
                     <label for="reservation_pin" class="form-label">Varauksen PIN</label>
-                    <input type="text" class="form-control" id="reservation_pin">
+                    <input type="text" class="form-control" id="reservation_pin" name="reservation_pin">
                 </div>
-                <a type="submit" class="btn btn-primary" href="/edit-reservation">Etsi varaus</a>
+                <button type="submit" class="btn btn-primary">Etsi varaus</button>
             </form>
         </div>
     </div>
