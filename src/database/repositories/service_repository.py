@@ -37,6 +37,16 @@ def list_services() -> list[Service]:
     return services_array
 
 
+def get_deletable_service_ids() -> list[str]:
+    result = db.session.execute(text("SELECT services.id, rt.id IS NULL as can_be_deleted FROM services LEFT JOIN reservable_timeslots rt ON services.id = rt.service"))
+    raw_results_array = result.fetchall()
+    deletable_service_ids = []
+    for row in raw_results_array:
+        if row[1] is True:
+            deletable_service_ids.append(row[0])
+    return deletable_service_ids
+
+
 def delete_service(id: str):
     delete_query = "DELETE FROM services WHERE id = :id"
     db.session.execute(text(delete_query), {"id": id})

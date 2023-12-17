@@ -13,13 +13,19 @@
         <tbody>
         {% for service in services %}
             <tr class="align-middle">
-            <td>{{ service.name }}</td>
-            <td>{{ '{:.2f}'.format(service.price / 100) }} €</td>
-            <td><form method="POST" action="/dashboard/manage-services/delete/">
-                <input class="d-none" value="{{ service.service_id }}" name="service_id"/>
-                <button class="btn btn-danger" type="submit">Poista</button>
-            </form></td>
-        </tr>
+                <td>{{ service.name }}</td>
+                <td>{{ '{:.2f}'.format(service.price / 100) }} €</td>
+                <td>
+                    {% if service.service_id in deletable_ids %}
+                        <form method="POST" action="/dashboard/manage-services/delete/">
+                            <input class="d-none" value="{{ service.service_id }}" name="service_id"/>
+                            <button class="btn btn-danger" type="submit">Poista</button>
+                        </form>
+                    {% else %}
+                        <span>Palvelu on jo käytössä</span>
+                    {% endif %}
+                </td>
+            </tr>
         {% endfor %}
         </tbody>
     </table>
@@ -27,10 +33,12 @@
     <form method="POST" action="/dashboard/manage-services/create/">
         <div class="row mb-3">
             <div class="col">
-                <input type="text" class="form-control" placeholder="Palvelun nimi" aria-label="Palvelun nimi" name="service_name">
+                <input type="text" class="form-control" placeholder="Palvelun nimi" aria-label="Palvelun nimi"
+                       name="service_name">
             </div>
             <div class="col">
-                <input type="number" class="form-control" placeholder="Palvelun hinta senteissä" aria-label="Palvelun hinta senteissä" name="service_price">
+                <input type="number" class="form-control" placeholder="Palvelun hinta senteissä"
+                       aria-label="Palvelun hinta senteissä" name="service_price">
             </div>
         </div>
         <div class="row">

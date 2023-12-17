@@ -47,6 +47,16 @@ def list_locations() -> list[Location]:
     return locations_array
 
 
+def get_deletable_location_ids() -> list[str]:
+    result = db.session.execute(text("SELECT locations.id, rt.id IS NULL as can_be_deleted FROM locations LEFT JOIN reservable_timeslots rt ON locations.id = rt.location"))
+    raw_results_array = result.fetchall()
+    deletable_location_ids = []
+    for row in raw_results_array:
+        if row[1] is True:
+            deletable_location_ids.append(row[0])
+    return deletable_location_ids
+
+
 def delete_location(id: str):
     delete_query = "DELETE FROM locations WHERE id = :id"
     db.session.execute(text(delete_query), {"id": id})

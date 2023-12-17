@@ -1,7 +1,8 @@
 from flask import render_template, Request, redirect
 from src.helpers.context_generator import dashboard_context
 from src.database.entities.user import User
-from src.database.repositories.location_repository import list_locations, create_location, delete_location, get_reservable_locations
+from src.database.repositories.location_repository import list_locations, create_location, delete_location, \
+    get_reservable_locations, get_deletable_location_ids
 from src.helpers.ValidationException import ValidationException
 from src.helpers.request_validator import validate_request
 from urllib.parse import urlparse
@@ -11,8 +12,9 @@ from src.database.repositories.service_repository import get_service_by_id
 
 def view_manage_locations(user: User):
     locations = list_locations()
+    deletable_ids = get_deletable_location_ids()
     return render_template('dashboard/locations/manage_locations.html', dashboard_context=dashboard_context(user),
-                           locations=locations)
+                           locations=locations, deletable_ids=deletable_ids)
 
 
 def view_customer_locations():
