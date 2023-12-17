@@ -17,33 +17,14 @@ Kampaamon varausjärjestelmä, jossa asiakkaat voivat varata ajan haluamaansa pa
 <a name="tarkastajalle"></a>
 ## Tarkastajalle
 Sovelluksen fly.io osoite: https://reservations.fly.dev/
-Sovelluksen pääkäyttäjän tunnukset löytyvät tiedostosta online.txt. Tällä hetkellä nämä avaavat erilaisen näkymän hallintapanelissa ja antavat mahdollisuuden mm. muiden käyttäjien muokkaamiseen. Ethän tiputa adminkäyttäjän roolia. Tällä käyttäjällä ei pääse tuhoamaan sovelluksessa mitään suurempaa vielä tässä vaiheessa, joten siksi tunnukset ovat repositoryssä. Tulevaisuudessa tilanne voi olla toinen.
+Sovelluksen pääkäyttäjän tunnukset löytyvät tiedostosta online.txt. Tällä hetkellä nämä avaavat erilaisen näkymän hallintapanelissa ja antavat mahdollisuuden mm. muiden käyttäjien muokkaamiseen. Ethän tiputa adminkäyttäjän roolia. Tällä käyttäjällä ei pääse tuhoamaan sovelluksessa suurempia asioita, joten siksi tunnukset ovat repositoryssä. Tulevaisuudessa tilanne voi olla toinen.
 
-Osa sovelluksen palvelinpuolen logiikasta puuttuu vielä, katso alla oleva "Ominaisuudet, jotka toteuttamatta osio".
-<br>
 
 Suosittelen käymään läpi etusivulta löytyvät "Tee varaus", "Etsi varaus" ja Sijaintimme kohdat.<br>
 Etusivun (esim. localhost:5000/) vasemmassa alakulmassa on hienovarainen linkki tekstillä "Henkilökunnalle", jonka takaata löytyy kirjautumissivu, josta pääsee suoraan henkilökunnan työpöydälle käyttämällä online.txt-tiedoston tunnuksia. Täällä on loput ominaisuuksista.
 <br>
 
-Sovelluksessa toimivia ominaisuuksia on:
-- Varausta asiakkaana tehdessä voi valita palvelun ja toimipaikan (viimeinen lomake ei toimi vielä)
-- Sijaintien tarkastelu
-- Käyttäjän kirjautuminen, rekisteröityminen ja uloskirjautuminen
-- Käyttäjien listaaminen
-- Käyttäjän salliminen henkilökunnan työpöydälle ja tämän oikeuden poistaminen
-- Käyttäjän roolin vaihtaminen käyttäjästä pääkäyttäjäksi ja toisin päin
-- Palveluiden ja toimipaikkojen luominen, listaaminen ja poistaminen (muokkaaminen toteuttamatta)
-- Oman käyttäjän tietojen muokkaus
-- Varattavien aikojen (näitä asiakkaat voivat varailla sitten) luominen ja listaaminen
-- Pelkästään pääkäyttäjälle tarkoitettujen osioiden piilotus työpöydältä, jos kirjaudutaan normaalina käyttäjänä.
-<br>
-
 Muistathan, että rekisteröityneet käyttäjät tulee hyväksyä pääkäyttäjän toimesta Käyttäjät välilehdeltä ennen kuin tämä rekisteröitynyt käyttäjä pääsee kirjautumaan sisään.
-
-## Ominaisuudet, jotka toteuttamatta
-##### Etusivu
-- Virheviestin näyttäminen varaamisen yhteydessä
 
 ## Sovelluksen käynnistäminen
 1. Siirry projektin juurikansioon `reservations`
@@ -76,7 +57,7 @@ Käyttäjäryhmät ovat järjestyksessä pienemmistä oikeuksista suurimpiin oik
   - Valitsee toimipisteen, palvelun ja kampaajan
   - Syöttää omat tiedot ja mahdollisesti viestin kampaajalle
 - Muokata tekemäänsä varausta
-  - Oman varauksen löytää varauksen tunnisteella ja sen luonnin yhteydessä saadulla pin-koodilla.
+  - Oman varauksen löytää sähköpostilla ja sen luonnin yhteydessä saadulla pin-koodilla.
   - Varauksen omia tietoja voi muokata ja sen voi perua
 - Tarkastella verkkosivuilla toimipisteitä
 
@@ -101,5 +82,5 @@ Käyttäjäryhmät ovat järjestyksessä pienemmistä oikeuksista suurimpiin oik
 - Muokata varattavia palveluita
   - Luoda ja poistaa palveluita (palvelulla on nimi ja hinta)
 - Muokata toimipisteitä
-  - Luoda, muokata ja poistaa toimipisteitä
+  - Luoda ja poistaa toimipisteitä
     - Toimipisteellä on nimi, osoite ja kuva (URL)
