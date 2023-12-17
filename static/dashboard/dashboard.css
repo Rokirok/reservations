@@ -4,3 +4,7 @@
 .reservations-table tr > th:first-child > a {
     text-decoration: none;
 }
+
+.reservations-table tr > th:first-child > a.line-through {
+    text-decoration: line-through;
+}

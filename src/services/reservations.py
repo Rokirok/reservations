@@ -7,7 +7,8 @@ from src.helpers.context_generator import dashboard_context
 from src.helpers.generic_validators import is_uuid, is_email
 from src.helpers.request_validator import validate_request
 from src.database.repositories.reservation_repository import create_reservation as db_create_reservation, \
-    search_reservation, get_reservation_by_id, save_updated_reservation, get_all_reservations
+    search_reservation, get_reservation_by_id, save_updated_reservation, get_all_reservations, \
+    delete_reservation as db_delete_reservation, set_complete_status as db_set_completed_status
 
 
 def _validate_create_location(request: Request) -> None:
@@ -120,4 +121,27 @@ def view_reservation(user: User, reservation_id: str):
     reservation = get_reservation_by_id(reservation_id)
     if not reservation:
         return redirect('/dashboard/', code=302)
-    return render_template('dashboard/manage_reservation.html', dashboard_context=dashboard_context(user), reservation=reservation)
+    return render_template('dashboard/manage_reservation.html', dashboard_context=dashboard_context(user),
+                           reservation=reservation)
+
+
+def set_complete_status(user: User, request: Request, completed: bool):
+    reservation_id = request.form.get('reservation_id', '')
+    if not is_uuid(reservation_id):
+        return redirect('/dashboard/', code=302)
+    reservation = get_reservation_by_id(reservation_id)
+    if not reservation:
+        return redirect('/dashboard/', code=302)
+    db_set_completed_status(reservation, completed)
+    return redirect(f'/dashboard/reservations/{reservation.reservation_id}/', code=302)
+
+
+def delete_reservation(user: User, request: Request):
+    reservation_id = request.form.get('reservation_id', '')
+    if not is_uuid(reservation_id):
+        return redirect('/dashboard/', code=302)
+    reservation = get_reservation_by_id(reservation_id)
+    if not reservation:
+        return redirect('/dashboard/', code=302)
+    db_delete_reservation(reservation)
+    return redirect('/dashboard/', code=302)

@@ -18,8 +18,10 @@
         <tbody>
         {% for reservation in reservations %}
             <tr>
-                <th scope="row"><a href="/dashboard/reservations/{{ reservation.reservation_id }}" class="text-primary">{{ reservation.timeslot.timestamp.strftime("%d.%m.%Y - %H:%M") }}</a> <i
-                        class="bi bi-box-arrow-up-right"></i></th>
+                <th scope="row"><a href="/dashboard/reservations/{{ reservation.reservation_id }}"
+                                   class="text-primary{{ ' line-through' if reservation.completed == true else '' }}">{{ reservation.timeslot.timestamp.strftime("%d.%m.%Y - %H:%M") }}</a>
+                    <i
+                            class="bi bi-box-arrow-up-right"></i></th>
                 <td>{{ reservation.timeslot.service.name }}</td>
                 <td>{{ reservation.customer_name }}</td>
                 {% if reservation.message != None %}

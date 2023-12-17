@@ -100,3 +100,21 @@ def get_all_reservations() -> list[Reservation]:
         reservations.append(reservation)
     return reservations
 
+
+def set_complete_status(reservation: Reservation, completed: bool) -> Reservation:
+    reservation.completed = completed
+    update_query = 'UPDATE reservations SET completed = :completed WHERE id = :id'
+    db.session.execute(text(update_query), {
+        "id": reservation.reservation_id,
+        "completed": reservation.completed
+    })
+    db.session.commit()
+    return reservation
+
+
+def delete_reservation(reservation: Reservation):
+    delete_query = 'DELETE FROM reservations WHERE id = :id'
+    db.session.execute(text(delete_query), {
+        "id": reservation.reservation_id
+    })
+    db.session.commit()
