@@ -11,10 +11,10 @@
             <a href="/reserve/" class="go-back text-primary position-absolute m-4">&#8592; Takaisin</a>
             <h1>Valitse toimipiste</h1>
             <p class="mb-5 text-muted">Valittu palvelu: {{ service.name }}</p>
-            <div class="row">
+            <div class="row w-100">
                 {% for location in locations %}
-                    <div class="col">
-                        <a type="button" class="btn btn-outline-primary" href="/reserve/{{ service.service_id }}/{{ location.location_id }}">{{ location.name }}</a>
+                    <div class="col-12 mb-3">
+                        <a type="button" class="btn btn-outline-primary w-100" href="/reserve/{{ service.service_id }}/{{ location.location_id }}">{{ location.name }}</a>
                     </div>
                 {% endfor %}
             </div>

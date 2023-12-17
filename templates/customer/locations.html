@@ -10,11 +10,15 @@
         <h1 class="mb-5">Sijaintimme</h1>
         <div class="row mb-5">
             {% for location in locations %}
-                <div class="col">
+                <div class="col mb-3">
                     <div class="card" style="width: 18rem;">
                         {% if location.cover_image != None %}
                             <img src="{{ location.cover_image }}" class="card-img-top"
                                  alt="Kuva Merihaan sijainnista">
+                        {% else %}
+                            <svg class="card-img-top">
+                                <rect width="100%" height="100%" fill="#868e96"></rect>
+                            </svg>
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ location.name }}</h5>

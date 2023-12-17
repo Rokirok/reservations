@@ -42,23 +42,13 @@ Sovelluksessa toimivia ominaisuuksia on:
 Muistathan, että rekisteröityneet käyttäjät tulee hyväksyä pääkäyttäjän toimesta Käyttäjät välilehdeltä ennen kuin tämä rekisteröitynyt käyttäjä pääsee kirjautumaan sisään.
 
 ## Ominaisuudet, jotka toteuttamatta
-#### Etusivu
-- Varauksen vieminen loppuun, palvelun ja toimipaikan valinta toimii, omien tietojen syöttölomake ei vielä.
-- Varauksen etsiminen
-- Sijaintimme sivun kortit saman kokoisiksi
-- Valitse palvelu kortin napit järkevän näköiseksi (toimi kahdella, ei näköjään kolmella)
-##### Varaukset välilehti
-- Asiakkaiden tekemien varauksien listaaminen (pelkkä design tehtynä)
-- Asiakkaiden varauksien tarkastelynäkymä (pelkkä design tehtynä)
-- Asiakkaan varauksen asettaminen suoritetuksi tai poistaminen (pelkkä design tehtynä)
-
+##### Etusivu
+- Virheviestin näyttäminen varaamisen yhteydessä
 ##### Varattavat ajat välilehti
-- Luotujen "Varattavien aikojen" poistaminen
 - Luonnin yhteydessä tapahtuneiden virheviestien näyttäminen, erityisesti syötteen formatointivirheet
 
 ##### Palvelut ja toimipaikat välilehdet
 - Estä palvelun tai toimipaikan poistaminen, jos sillä on varattavia aikoja (heittää tällä hetkellä virheen vain)
-- Toimipaikkakortit saman korkuisiksi
 
 
 ## Sovelluksen käynnistäminen

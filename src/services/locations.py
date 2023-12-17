@@ -57,6 +57,8 @@ def add_location(executor: User, request: Request):
     location_name = request.form['location_name']
     location_address = request.form['location_address']
     cover_image = request.form['location_cover_image']
+    if len(cover_image) == 0:
+        cover_image = None
     create_location(location_name, location_address, cover_image)
     return redirect('/dashboard/locations/manage-locations/', code=302)
 

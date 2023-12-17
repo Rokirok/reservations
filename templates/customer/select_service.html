@@ -10,10 +10,10 @@
         <div class="form-container d-flex flex-column align-items-center justify-content-center p-5 w-50 position-relative">
             <a href="/" class="go-back text-primary position-absolute m-4">&#8592; Takaisin</a>
             <h1 class="mb-5">Valitse palvelu</h1>
-            <div class="row">
+            <div class="row w-100">
                 {% for service in services %}
-                    <div class="col">
-                    <a type="button" class="btn btn-outline-primary" href="/reserve/{{ service.service_id }}/">{{ service.name }} ({{ '{:.2f}'.format(service.price / 100) }} €)</a>
+                    <div class="col-12 mb-3">
+                    <a type="button" class="btn btn-outline-primary w-100" href="/reserve/{{ service.service_id }}/">{{ service.name }} ({{ '{:.2f}'.format(service.price / 100) }} €)</a>
                 </div>
                 {% endfor %}
             </div>
