@@ -9,13 +9,19 @@
     <div class="container-fluid overflow-y-scroll vh-100 d-flex flex-column align-items-center">
         <div class="form-container p-5 w-50">
             <p>Valittu palvelu {{ service.name.lower() }} toimipisteelle {{ location.name }}</p>
-            <form action="/reserve/create-reservation/" method="POST">
+            <form action="/reserve/create-reservation/?service={{ service.service_id }}&location={{ location.location_id }}" method="POST">
                 <div class="mb-3">
+                    {% with errors = get_flashed_messages(category_filter=["error"]) %}
+                        {% if errors %}
+                            <p class="text-danger">{{ errors[0] }}</p>
+                        {% endif %}
+                    {% endwith %}
                     <label for="employee" class="form-label">Aika ja kampaaja</label>
                     <select class="form-select" aria-label="Valitse aika ja kampaaja" id="timeslot" name="timeslot">
                         <option selected>Valitse aika ja kampaaja</option>
                         {% for timeslot in reservable_times %}
-                            <option value="{{ timeslot.timeslot_id }}">{{ timeslot.timestamp.strftime("%d.%m.%Y - %H:%M") }} - {{ timeslot.employee.name }}</option>
+                            <option value="{{ timeslot.timeslot_id }}">{{ timeslot.timestamp.strftime("%d.%m.%Y - %H:%M") }}
+                                - {{ timeslot.employee.name }}</option>
                         {% endfor %}
                     </select>
                 </div>

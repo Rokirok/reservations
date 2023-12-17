@@ -1,4 +1,4 @@
-from flask import render_template, Request, redirect
+from flask import render_template, Request, redirect, flash
 from src.helpers.context_generator import dashboard_context
 from src.database.entities.user import User
 from src.database.repositories.location_repository import list_locations, get_location_by_id
@@ -44,33 +44,33 @@ def _validate_create_reservable_time(req: Request):
     required_fields = {"location", "date", "time", "employee", "service"}
 
     if not required_fields.issubset(form_body.keys()):
-        raise ValidationException(
-            "Request form doesn't have 'location', 'date', 'time', 'employee' and 'service' parameters")
+        raise ValidationException("Täytäthän kaikki kentät!")
 
     try:
         datetime.strptime(req.form['date'], '%d.%m.%Y')
-        datetime.strptime(req.form['time'], '%H.%M')
     except ValueError:
         raise ValidationException(
-            "Date or time is not in the proper format. Date should be DD.MM.YYYY and time as HH.MM")
+            "Päivän tulisi olla muodossa DD.MM.YYYY Esim. 22.12.2023")
+    try:
+        datetime.strptime(req.form['time'], '%H.%M')
+    except ValueError:
+        raise ValidationException("Ajan tulisi olla muodossa HH.MM Esim. 10.15")
 
     if not is_uuid(req.form['employee']):
-        raise ValidationException('Employee is not an UUID')
+        raise ValidationException('Työntekijä-kenttä ei saa olla tyhjä!')
 
     if not is_uuid(req.form['service']):
-        raise ValidationException('Service is not an UUID')
+        raise ValidationException('Palvelu-kenttä ei saa olla tyhjä!')
 
     if not is_uuid(req.form['location']):
-        raise ValidationException('Location is not an UUID')
+        raise ValidationException('Toimipiste-kenttä ei saa olla tyhjä!')
 
 
 def create_reservable_time(user: User, request: Request):
     try:
         validate_request(_validate_create_reservable_time, request)
     except ValidationException as e:
-        print('validation exception')
-        print(e)
-        # TODO: Return error message to frontend
+        flash(str(e), 'error')
         return redirect('/dashboard/manage-reservable-times/', code=302)
     location = get_location_by_id(request.form['location'])
     service = get_service_by_id(request.form['service'])

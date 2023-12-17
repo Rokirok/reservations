@@ -34,6 +34,11 @@
         </tbody>
     </table>
     <h1 class="mb-3">Lisää varattava aika</h1>
+    {% with errors = get_flashed_messages(category_filter=["error"]) %}
+    {% if errors %}
+        <p class="text-danger">{{ errors[0] }}</p>
+    {% endif %}
+    {% endwith %}
     <form action="/dashboard/manage-reservable-times/create/" method="POST">
         <div class="row mb-3">
             <div class="col">

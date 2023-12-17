@@ -44,12 +44,6 @@ Muistathan, että rekisteröityneet käyttäjät tulee hyväksyä pääkäyttäj
 ## Ominaisuudet, jotka toteuttamatta
 ##### Etusivu
 - Virheviestin näyttäminen varaamisen yhteydessä
-##### Varattavat ajat välilehti
-- Luonnin yhteydessä tapahtuneiden virheviestien näyttäminen, erityisesti syötteen formatointivirheet
-
-##### Palvelut ja toimipaikat välilehdet
-- Estä palvelun tai toimipaikan poistaminen, jos sillä on varattavia aikoja (heittää tällä hetkellä virheen vain)
-
 
 ## Sovelluksen käynnistäminen
 1. Siirry projektin juurikansioon `reservations`

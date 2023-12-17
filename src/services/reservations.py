@@ -1,4 +1,4 @@
-from flask import Request, redirect, render_template
+from flask import Request, redirect, render_template, flash
 
 from src.database.entities.user import User
 from src.database.repositories.reservable_times_repository import get_reservable_time_by_id
@@ -15,8 +15,7 @@ def _validate_create_location(request: Request) -> None:
     form_body = request.form
     required_fields = {"timeslot", "customer_name", "customer_number", "customer_email", "message"}
     if not required_fields.issubset(form_body.keys()):
-        raise ValidationException(
-            "Request form doesn't have 'timeslot', 'customer_name', 'customer_number', 'customer_email' and 'message' parameters")
+        raise ValidationException("Täytäthän kaikki kentät!")
 
     if not is_uuid(request.form['timeslot']):
         raise ValidationException("Viallinen aika varattuna, timeslot is not uuid")
@@ -30,8 +29,12 @@ def _validate_create_location(request: Request) -> None:
 def create_reservation(req: Request):
     try:
         validate_request(_validate_create_location, req)
-    except ValidationException:
-        # TODO: Virheviestit varaukseen nätisti!
+    except ValidationException as error:
+        flash(str(error), 'error')
+        service_id = req.args.get('service', '')
+        location_id = req.args.get('location', '')
+        if is_uuid(service_id) and is_uuid(location_id):
+            return redirect(f'/reserve/{service_id}/{location_id}', code=302)
         return redirect('/reserve', code=302)
     timeslot_id = req.form['timeslot']
     timeslot = get_reservable_time_by_id(timeslot_id)
