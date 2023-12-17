@@ -112,3 +112,12 @@ def view_reservations(user: User, request: Request):
     reservations = get_all_reservations()
     return render_template('dashboard/dashboard.html', dashboard_context=dashboard_context(user),
                            reservations=reservations)
+
+
+def view_reservation(user: User, reservation_id: str):
+    if not is_uuid(reservation_id):
+        return redirect('/dashboard/', code=302)
+    reservation = get_reservation_by_id(reservation_id)
+    if not reservation:
+        return redirect('/dashboard/', code=302)
+    return render_template('dashboard/manage_reservation.html', dashboard_context=dashboard_context(user), reservation=reservation)

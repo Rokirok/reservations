@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, session, request
 from src.decorators.require_authorization import login_required
 from app import app
 from src.helpers.context_generator import dashboard_context
-from src.services.reservations import view_reservations
+from src.services.reservations import view_reservations, view_reservation
 from src.services.users import update_user_details as service_update_user_details
 
 
@@ -12,10 +12,10 @@ def dashboard(user):
     return view_reservations(user, request)
 
 
-@app.route('/dashboard/reservations/reservationId')
+@app.route('/dashboard/reservations/<reservation_id>')
 @login_required('user')
-def manage_reservation(user):
-    return render_template('dashboard/manage_reservation.html', dashboard_context=dashboard_context(user))
+def manage_reservation(user, reservation_id):
+    return view_reservation(user, reservation_id)
 
 
 @app.route('/dashboard/users/user-details/')
