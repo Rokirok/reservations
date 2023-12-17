@@ -53,7 +53,7 @@ def register_user(request: Request):
     try:
         user = create_new_user(request.form['name'], request.form['email'], request.form['password'])
         if user.role == 'admin':
-            return redirect('/successful_registration?created_as_admin=true')
+            return redirect('/successful_registration?created_as_admin=yes')
         else:
             return redirect('/successful_registration')
     except EntityExistsException as e:

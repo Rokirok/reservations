@@ -25,5 +25,5 @@ def handle_register():
 
 @app.route('/successful_registration/', methods=['GET'])
 def view_successful_register():
-    # TODO: Handle created_as_admin query parameter
-    return render_template('customer/successful_registration.html')
+    created_as_admin = request.args.get('created_as_admin', False) == 'yes'
+    return render_template('customer/successful_registration.html', created_as_admin=created_as_admin)
