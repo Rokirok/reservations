@@ -23,7 +23,10 @@
                     <td>Varattu jo</td>
                 {% else %}
                     <td>
-                        <button class="btn btn-danger">Poista</button>
+                        <form class="d-inline-block" action="/dashboard/manage-reservable-times/delete/" method="POST">
+                            <input class="d-none" value="{{ rt.timeslot_id }}" name="timeslot_id">
+                            <button type="submit" class="btn btn-danger">Poista</button>
+                        </form>
                     </td>
                 {% endif %}
             </tr>

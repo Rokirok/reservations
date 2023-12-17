@@ -83,3 +83,11 @@ def get_reservable_time_by_id(rt_id: str):
     rt_employee = get_user_by_id(rt_employee_id)
     rt_service = get_service_by_id(rt_service_id)
     return Timeslot(rt_id, rt_timestamp, rt_location, rt_employee, rt_service)
+
+
+def delete_reservable_time(timeslot: Timeslot):
+    delete_query = 'DELETE FROM reservable_timeslots WHERE id = :id'
+    db.session.execute(text(delete_query), {
+        "id": timeslot.timeslot_id
+    })
+    db.session.commit()

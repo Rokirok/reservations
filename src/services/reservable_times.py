@@ -4,13 +4,13 @@ from src.database.entities.user import User
 from src.database.repositories.location_repository import list_locations, get_location_by_id
 from src.database.repositories.service_repository import list_services, get_service_by_id
 from src.database.repositories.user_repository import list_employees, get_user_by_id
-from src.database.repositories.reservable_times_repository import get_reservable_times
+from src.database.repositories.reservable_times_repository import get_reservable_times, get_reservable_time_by_id
 from src.helpers.ValidationException import ValidationException
 from src.helpers.request_validator import validate_request
 from datetime import datetime
 from src.helpers.generic_validators import is_uuid
 from src.database.repositories.reservable_times_repository import create_reservable_time as db_create_reservable_time, \
-    list_reservable_times
+    list_reservable_times, delete_reservable_time as db_delete_reservable_time
 
 
 def view_reservable_times(user: User):
@@ -89,4 +89,11 @@ def create_reservable_time(user: User, request: Request):
 
 
 def delete_reservable_time(user: User, request: Request):
+    timeslot_id = request.form.get('timeslot_id', '')
+    if not is_uuid(timeslot_id):
+        return redirect('/dashboard/manage-reservable-times/', code=302)
+    timeslot = get_reservable_time_by_id(timeslot_id)
+    if not timeslot:
+        return redirect('/dashboard/manage-reservable-times/', code=302)
+    db_delete_reservable_time(timeslot)
     return redirect('/dashboard/manage-reservable-times/', code=302)
